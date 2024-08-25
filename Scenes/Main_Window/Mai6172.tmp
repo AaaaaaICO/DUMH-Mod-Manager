@@ -1,0 +1,479 @@
+[gd_scene load_steps=22 format=3 uid="uid://cio88eumv6006"]
+
+[ext_resource type="Script" path="res://Scenes/Main_Window/Main_Window_Controller.gd" id="1_w4vn0"]
+[ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="2_2qig7"]
+[ext_resource type="Script" path="res://Scripts/Scale_On_Hover.gd" id="3_s38qy"]
+[ext_resource type="StyleBox" uid="uid://cqbj7m0rmflqx" path="res://Styleboxs/Button/SimpleWhite_Button_Pressed.tres" id="3_xmw14"]
+[ext_resource type="Texture2D" uid="uid://cxd82oxn5uolw" path="res://Sprites/Warning.png" id="5_gbhlx"]
+[ext_resource type="StyleBox" uid="uid://bm1cn6c3xs130" path="res://Styleboxs/Button/SimpleBlack_Button.tres" id="6_due6c"]
+[ext_resource type="StyleBox" uid="uid://d3jw442hvmgiy" path="res://Styleboxs/Button/SimpleBlack_Button_Hover.tres" id="7_lda8e"]
+[ext_resource type="StyleBox" uid="uid://b0ha7ovj1t4wq" path="res://Styleboxs/Button/SimpleBlack_Button_Pressed.tres" id="8_kyks4"]
+
+[sub_resource type="Animation" id="Animation_7pu7j"]
+resource_name = "ANIM_IN"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ANIM_TRANS/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.287175, 1),
+"update": 0,
+"values": [Vector2(0, 610), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_movf7"]
+resource_name = "ANIM_OUT"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ANIM_TRANS/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.287175, 0.287175),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -610)]
+}
+
+[sub_resource type="Animation" id="Animation_4bkwn"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ANIM_TRANS/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 610)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hej4"]
+_data = {
+"ANIM_IN": SubResource("Animation_7pu7j"),
+"ANIM_OUT": SubResource("Animation_movf7"),
+"RESET": SubResource("Animation_4bkwn")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18x7u"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.52549)
+shadow_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihlha"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dyy6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vlas"]
+bg_color = Color(0.361, 1, 0.361, 0.75)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 1024
+corner_detail = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_56rfc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8c0kc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_npqde"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_034l4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ctb3"]
+
+[node name="MASTER" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w4vn0")
+
+[node name="ANIM_TRANS" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8hej4")
+}
+
+[node name="ColorRect" type="ColorRect" parent="ANIM_TRANS"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 610.0
+offset_bottom = 610.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.921569, 0.921569, 0.921569, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CR_Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0784314, 0.0980392, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Popups" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="FileDialog" type="FileDialog" parent="Popups"]
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(454, 175)
+ok_button_text = "Select Current Folder"
+dialog_close_on_escape = false
+file_mode = 2
+access = 2
+show_hidden_files = true
+use_native_dialog = true
+
+[node name="VBC MAIN" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PC_Header" type="PanelContainer" parent="VBC MAIN"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_18x7u")
+
+[node name="__INPUTBLOCKER__" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0980392, 0.129412, 0.670588)
+metadata/_edit_use_anchors_ = true
+
+[node name="MC_Get_USER_MODS_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
+visible = false
+layout_mode = 2
+anchor_top = -0.0344262
+anchor_bottom = 0.047541
+offset_left = -14.0
+offset_top = 20.0
+offset_right = 894.0
+offset_bottom = 560.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+metadata/_edit_use_anchors_ = true
+
+[node name="VBC" type="VBoxContainer" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LBL_HEADER" type="Label" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "ERROR - External mods Path Issue!"
+horizontal_alignment = 1
+
+[node name="LBL_Desc" type="Label" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "There is an issue with your Mods path or lack thereof.
+Please enter a new path by pressing the button.
+If the folder isnt correct the browser will close try again.
+"
+horizontal_alignment = 1
+
+[node name="NULL" type="Control" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="BTN_OPEN_FILE_MANAGER" type="Button" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(404, 40)
+size_flags_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ihlha")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1dyy6")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = ExtResource("2_2qig7")
+text = "OPEN FILE MANAGER"
+script = ExtResource("3_s38qy")
+UnHoverSize = Vector2(0.9, 0.9)
+UnHoverColor = Color(1, 1, 1, 1)
+UnHoverDur = 0.2
+HoverSize = Vector2(1, 1)
+HoverDur = 0.15
+HoverColor = Color(1, 1, 1, 1)
+
+[node name="GreenPanel" type="Panel" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294846
+anchor_right = 0.714077
+anchor_bottom = 1.0
+offset_left = 231.32
+offset_right = 231.32
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2vlas")
+metadata/_edit_use_anchors_ = true
+
+[node name="LBL_FindFolder" type="Label" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "**Do NOT make this folder inside your game's path**
+"
+horizontal_alignment = 1
+
+[node name="MC_Get_Game_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+metadata/_edit_use_anchors_ = true
+
+[node name="VBC" type="VBoxContainer" parent="__INPUTBLOCKER__/MC_Get_Game_Path"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LBL_HEADER" type="Label" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "ERROR - Game Path Issue!"
+horizontal_alignment = 1
+
+[node name="LBL_Desc" type="Label" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "There is an issue with your game path or lack thereof.
+Please enter a new path by pressing the button.
+If the folder isnt correct the browser will close try again."
+horizontal_alignment = 1
+
+[node name="NULL" type="Control" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="BTN_OPEN_FILE_MANAGER" type="Button" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_left = -40.4
+offset_top = -4.0
+offset_right = 40.4
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(404, 40)
+size_flags_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ihlha")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1dyy6")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = ExtResource("2_2qig7")
+text = "OPEN FILE MANAGER"
+script = ExtResource("3_s38qy")
+UnHoverSize = Vector2(0.9, 0.9)
+UnHoverColor = Color(1, 1, 1, 1)
+UnHoverDur = 0.2
+HoverSize = Vector2(0.95, 0.95)
+HoverDur = 0.15
+HoverColor = Color(1, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="GreenPanel" type="Panel" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294846
+anchor_right = 0.714077
+anchor_bottom = 1.0
+offset_left = 231.32
+offset_right = 231.32
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2vlas")
+metadata/_edit_use_anchors_ = true
+
+[node name="LBL_FindFolder" type="Label" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC"]
+layout_mode = 2
+text = "Epic: when the game is closed press the 3 dots > manage > the folder icon by uninstall
+Steam: Right click > Properties... > Installed Files > Browse\""
+
+[node name="CC_CUSTOM_WARNING_MODS_IN_~MODS" type="CenterContainer" parent="__INPUTBLOCKER__"]
+visible = false
+layout_mode = 2
+offset_left = 440.0
+offset_top = 305.0
+offset_right = 440.0
+offset_bottom = 305.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="S2D_WARNING" type="Sprite2D" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS"]
+position = Vector2(-2, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_gbhlx")
+
+[node name="NULL" type="Control" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS"]
+layout_mode = 2
+
+[node name="LBL_WARNING_TEXT" type="Label" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL"]
+layout_mode = 0
+offset_left = -214.0
+offset_top = -67.0
+offset_right = 210.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "~MODS contains mods unrelated to DUMH as such DUMH may not work as intended,
+please import these mods into DUMH"
+horizontal_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL"]
+layout_mode = 2
+offset_left = -214.0
+offset_top = 37.0
+offset_right = 210.0
+offset_bottom = 100.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer"]
+layout_mode = 2
+
+[node name="BTN_IMPORT" type="Button" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("6_due6c")
+text = "IMPORT"
+
+[node name="BTN_IGNORE" type="Button" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/hover = ExtResource("7_lda8e")
+theme_override_styles/pressed = ExtResource("8_kyks4")
+theme_override_styles/normal = ExtResource("6_due6c")
+text = "IGNORE"
+
+[node name="CC_WARNING" type="CenterContainer" parent="__INPUTBLOCKER__"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="S2D_WARNING" type="Sprite2D" parent="__INPUTBLOCKER__/CC_WARNING"]
+position = Vector2(-2, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_gbhlx")
+
+[node name="NULL" type="Control" parent="__INPUTBLOCKER__/CC_WARNING"]
+layout_mode = 2
+
+[node name="BTN_WARNING" type="Button" parent="__INPUTBLOCKER__/CC_WARNING/NULL"]
+layout_mode = 2
+offset_left = -215.0
+offset_top = -113.0
+offset_right = 210.0
+offset_bottom = 113.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_56rfc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8c0kc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_npqde")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_034l4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3ctb3")
+
+[node name="LBL_WARNING_TEXT" type="Label" parent="__INPUTBLOCKER__/CC_WARNING/NULL"]
+layout_mode = 0
+offset_left = -214.0
+offset_top = -67.0
+offset_right = 210.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "~MODS contains mods unrelated to DUMH as such DUMH may not work as intended,
+please import these mods into DUMH by going to
+Settings ->"
+horizontal_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[connection signal="mouse_entered" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_exited"]
+[connection signal="pressed" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="." method="ON_BTN_OPEN_FILE_MANAGER_PRESSED"]
+[connection signal="mouse_entered" from="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_exited"]
+[connection signal="pressed" from="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="." method="ON_BTN_OPEN_FILE_MANAGER_PRESSED"]

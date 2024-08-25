@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://cio88eumv6006"]
+
+[ext_resource type="Script" path="res://Scenes/Main_Window/Main_Window_Controller.gd" id="1_w4vn0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18x7u"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.52549)
+shadow_size = 20
+
+[node name="MASTER" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w4vn0")
+
+[node name="CR_Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0784314, 0.0980392, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Popups" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="FileDialog" type="FileDialog" parent="Popups"]
+title = "Open a Directory"
+position = Vector2i(0, 36)
+size = Vector2i(454, 159)
+visible = true
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+show_hidden_files = true
+use_native_dialog = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PC_Header" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_18x7u")
+
+[node name="__INPUTBLOCKER__" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 4
+color = Color(0.0980392, 0.0980392, 0.129412, 0.670588)
+metadata/_edit_use_anchors_ = true

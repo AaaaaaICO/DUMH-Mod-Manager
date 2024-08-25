@@ -1,0 +1,1073 @@
+[gd_scene load_steps=38 format=3 uid="uid://cio88eumv6006"]
+
+[ext_resource type="Script" path="res://Scenes/Main_Window/Main_Window_Controller.gd" id="1_w4vn0"]
+[ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="2_2qig7"]
+[ext_resource type="Script" path="res://Scripts/Scale_On_Hover.gd" id="3_s38qy"]
+[ext_resource type="StyleBox" uid="uid://cqbj7m0rmflqx" path="res://Styleboxs/Button/SimpleWhite_Button_Pressed.tres" id="3_xmw14"]
+[ext_resource type="Texture2D" uid="uid://cxd82oxn5uolw" path="res://Sprites/Warning.png" id="5_gbhlx"]
+[ext_resource type="StyleBox" uid="uid://bm1cn6c3xs130" path="res://Styleboxs/Button/SimpleBlack_Button.tres" id="6_due6c"]
+[ext_resource type="StyleBox" uid="uid://d3jw442hvmgiy" path="res://Styleboxs/Button/SimpleBlack_Button_Hover.tres" id="7_lda8e"]
+[ext_resource type="StyleBox" uid="uid://b0ha7ovj1t4wq" path="res://Styleboxs/Button/SimpleBlack_Button_Pressed.tres" id="8_kyks4"]
+[ext_resource type="StyleBox" uid="uid://fik51dlbgc7j" path="res://Styleboxs/Black_Red_Panel.tres" id="9_svco5"]
+
+[sub_resource type="Animation" id="Animation_7pu7j"]
+resource_name = "ANIM_IN"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ANIM_TRANS/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.287175, 1),
+"update": 0,
+"values": [Vector2(0, 610), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_movf7"]
+resource_name = "ANIM_OUT"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ANIM_TRANS/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.287175, 0.287175),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -610)]
+}
+
+[sub_resource type="Animation" id="Animation_4bkwn"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ANIM_TRANS/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 610)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hej4"]
+_data = {
+"ANIM_IN": SubResource("Animation_7pu7j"),
+"ANIM_OUT": SubResource("Animation_movf7"),
+"RESET": SubResource("Animation_4bkwn")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18x7u"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.52549)
+shadow_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptvfp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urx50"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpey3"]
+bg_color = Color(0.0470588, 0.0470588, 0.0666667, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndbeu"]
+bg_color = Color(0.0470588, 0.0470588, 0.0666667, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+corner_detail = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fhw5r"]
+color = Color(1, 1, 1, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihlha"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dyy6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vlas"]
+bg_color = Color(0.361, 1, 0.361, 0.75)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 1024
+corner_detail = 20
+
+[sub_resource type="Animation" id="Animation_tjh5n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.31864),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.297302),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_24gb8"]
+resource_name = "WARNING_IN"
+length = 0.34
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.31864, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.3, 0.333333),
+"transitions": PackedFloat32Array(0.297302, 0.353553, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(1.1, 1.1), Vector2(0.99, 0.99), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8squj"]
+_data = {
+"RESET": SubResource("Animation_tjh5n"),
+"WARNING_IN": SubResource("Animation_24gb8")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_56rfc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8c0kc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_npqde"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_034l4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ctb3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfh3j"]
+bg_color = Color(0.0862745, 0.0862745, 0.113725, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0o6fc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ewmxp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p4g6v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idy5f"]
+bg_color = Color(0.0784314, 0.0784314, 0.0980392, 1)
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xcok4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpf3b"]
+
+[node name="MASTER" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w4vn0")
+
+[node name="ANIM_TRANS" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8hej4")
+}
+
+[node name="ColorRect" type="ColorRect" parent="ANIM_TRANS"]
+top_level = true
+z_index = 1000
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 610.0
+offset_bottom = 610.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.921569, 0.921569, 0.921569, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CR_Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0784314, 0.0980392, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Popups" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="FileDialog" type="FileDialog" parent="Popups"]
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(454, 175)
+ok_button_text = "Select Current Folder"
+dialog_close_on_escape = false
+file_mode = 2
+access = 2
+show_hidden_files = true
+use_native_dialog = true
+
+[node name="VBC MAIN" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PC_Header" type="PanelContainer" parent="VBC MAIN"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_18x7u")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBC MAIN/PC_Header"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBC MAIN/PC_Header/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="BTN_APPLY_MODS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "APPLY MODS"
+
+[node name="BTN_FILTER_MODS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "FILTER MODS"
+
+[node name="BTN_TAGS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "TAGS"
+
+[node name="BTN_CHARACTERS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "CHARACTERS"
+
+[node name="BTN_SETTINGS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(115, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "SETTINGS"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBC MAIN"]
+custom_minimum_size = Vector2(880, 520)
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="PNL_MODS_LIST" type="Panel" parent="VBC MAIN/HBoxContainer"]
+custom_minimum_size = Vector2(595, 520)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_dpey3")
+
+[node name="MC_MODS_LIST" type="MarginContainer" parent="VBC MAIN/HBoxContainer/PNL_MODS_LIST"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="SC_MODS_LIST" type="ScrollContainer" parent="VBC MAIN/HBoxContainer/PNL_MODS_LIST/MC_MODS_LIST"]
+layout_mode = 2
+
+[node name="VBC_MODS_LIST" type="VBoxContainer" parent="VBC MAIN/HBoxContainer/PNL_MODS_LIST/MC_MODS_LIST/SC_MODS_LIST"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Panel" type="Panel" parent="VBC MAIN/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ndbeu")
+
+[node name="LBL" type="Label" parent="VBC MAIN/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.004
+anchor_right = 1.0
+anchor_bottom = 0.083
+offset_top = -0.0800002
+offset_bottom = -0.160004
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "PRESETS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBC MAIN/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_fhw5r")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBC MAIN/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.996
+offset_top = 35.0
+offset_bottom = 0.0799561
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBC MAIN/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBC MAIN/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="__INPUTBLOCKER__" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.098, 0.098, 0.129, 0.75)
+metadata/_edit_use_anchors_ = true
+
+[node name="MC_Get_USER_MODS_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
+visible = false
+layout_mode = 2
+anchor_top = -0.0344262
+anchor_bottom = 0.047541
+offset_left = -14.0
+offset_top = 20.0
+offset_right = 894.0
+offset_bottom = 560.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+metadata/_edit_use_anchors_ = true
+
+[node name="VBC" type="VBoxContainer" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LBL_HEADER" type="Label" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "ERROR - External mods Path Issue!"
+horizontal_alignment = 1
+
+[node name="LBL_Desc" type="Label" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "There is an issue with your Mods path or lack thereof.
+Please enter a new path by pressing the button.
+If the folder isnt correct the browser will close try again.
+"
+horizontal_alignment = 1
+
+[node name="NULL" type="Control" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="BTN_OPEN_FILE_MANAGER" type="Button" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(404, 40)
+size_flags_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ihlha")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1dyy6")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = ExtResource("2_2qig7")
+text = "OPEN FILE MANAGER"
+script = ExtResource("3_s38qy")
+UnHoverSize = Vector2(0.9, 0.9)
+UnHoverColor = Color(1, 1, 1, 1)
+UnHoverDur = 0.2
+HoverSize = Vector2(1, 1)
+HoverDur = 0.15
+HoverColor = Color(1, 1, 1, 1)
+
+[node name="GreenPanel" type="Panel" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294846
+anchor_right = 0.714077
+anchor_bottom = 1.0
+offset_left = 231.32
+offset_right = 231.32
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2vlas")
+metadata/_edit_use_anchors_ = true
+
+[node name="LBL_FindFolder" type="Label" parent="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "**Do NOT make this folder inside your game's path**
+"
+horizontal_alignment = 1
+
+[node name="MC_Get_Game_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+metadata/_edit_use_anchors_ = true
+
+[node name="VBC" type="VBoxContainer" parent="__INPUTBLOCKER__/MC_Get_Game_Path"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LBL_HEADER" type="Label" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "ERROR - Game Path Issue!"
+horizontal_alignment = 1
+
+[node name="LBL_Desc" type="Label" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "There is an issue with your game path or lack thereof.
+Please enter a new path by pressing the button.
+If the folder isnt correct the browser will close try again."
+horizontal_alignment = 1
+
+[node name="NULL" type="Control" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="BTN_OPEN_FILE_MANAGER" type="Button" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_left = -40.4
+offset_top = -4.0
+offset_right = 40.4
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(404, 40)
+size_flags_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ihlha")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1dyy6")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = ExtResource("2_2qig7")
+text = "OPEN FILE MANAGER"
+script = ExtResource("3_s38qy")
+UnHoverSize = Vector2(0.9, 0.9)
+UnHoverColor = Color(1, 1, 1, 1)
+UnHoverDur = 0.2
+HoverSize = Vector2(0.95, 0.95)
+HoverDur = 0.15
+HoverColor = Color(1, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="GreenPanel" type="Panel" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294846
+anchor_right = 0.714077
+anchor_bottom = 1.0
+offset_left = 231.32
+offset_right = 231.32
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2vlas")
+metadata/_edit_use_anchors_ = true
+
+[node name="LBL_FindFolder" type="Label" parent="__INPUTBLOCKER__/MC_Get_Game_Path/VBC"]
+layout_mode = 2
+text = "Epic: when the game is closed press the 3 dots > manage > the folder icon by uninstall
+Steam: Right click > Properties... > Installed Files > Browse\""
+
+[node name="CC_CUSTOM_WARNING_MODS_IN_~MODS" type="CenterContainer" parent="__INPUTBLOCKER__"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_left = 440.0
+offset_top = 305.0
+offset_right = 440.0
+offset_bottom = 305.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+
+[node name="WARNING_AnimationPlayer" type="AnimationPlayer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS"]
+libraries = {
+"": SubResource("AnimationLibrary_8squj")
+}
+
+[node name="S2D_WARNING" type="Sprite2D" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS"]
+position = Vector2(-2, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_gbhlx")
+
+[node name="NULL" type="Control" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS"]
+layout_mode = 2
+
+[node name="LBL_WARNING_TEXT" type="Label" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL"]
+layout_mode = 0
+offset_left = -214.0
+offset_top = -67.0
+offset_right = 210.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "~MODS contains mods unrelated to DUMH as such DUMH may not work as intended,
+please import these mods into DUMH"
+horizontal_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL"]
+layout_mode = 2
+offset_left = -214.0
+offset_top = 37.0
+offset_right = 210.0
+offset_bottom = 100.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer"]
+layout_mode = 2
+
+[node name="BTN_IMPORT" type="Button" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("6_due6c")
+text = "IMPORT"
+
+[node name="BTN_IGNORE" type="Button" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/hover = ExtResource("7_lda8e")
+theme_override_styles/pressed = ExtResource("8_kyks4")
+theme_override_styles/normal = ExtResource("6_due6c")
+text = "IGNORE"
+
+[node name="CC_WARNING" type="CenterContainer" parent="__INPUTBLOCKER__"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="S2D_WARNING" type="Sprite2D" parent="__INPUTBLOCKER__/CC_WARNING"]
+position = Vector2(-2, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_gbhlx")
+
+[node name="NULL" type="Control" parent="__INPUTBLOCKER__/CC_WARNING"]
+layout_mode = 2
+
+[node name="BTN_WARNING" type="Button" parent="__INPUTBLOCKER__/CC_WARNING/NULL"]
+layout_mode = 2
+offset_left = -215.0
+offset_top = -113.0
+offset_right = 210.0
+offset_bottom = 113.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_56rfc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8c0kc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_npqde")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_034l4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3ctb3")
+
+[node name="LBL_WARNING_TEXT" type="Label" parent="__INPUTBLOCKER__/CC_WARNING/NULL"]
+layout_mode = 0
+offset_left = -214.0
+offset_top = -67.0
+offset_right = 210.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "~MODS contains mods unrelated to DUMH as such DUMH may not work as intended,
+please import these mods into DUMH"
+horizontal_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="AD_Chara" type="AcceptDialog" parent="__INPUTBLOCKER__"]
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(432, 414)
+borderless = true
+always_on_top = true
+theme_override_styles/panel = ExtResource("9_svco5")
+
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/AD_Chara"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 427.0
+offset_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="__INPUTBLOCKER__/AD_Chara/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_Chara/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="AD_Tags" type="AcceptDialog" parent="__INPUTBLOCKER__"]
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(432, 414)
+borderless = true
+always_on_top = true
+theme_override_styles/panel = ExtResource("9_svco5")
+
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/AD_Tags"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 427.0
+offset_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="__INPUTBLOCKER__/AD_Tags/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_Tags/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="AD_FILTER" type="AcceptDialog" parent="__INPUTBLOCKER__"]
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(432, 414)
+borderless = true
+always_on_top = true
+theme_override_styles/panel = ExtResource("9_svco5")
+
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/AD_FILTER"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 427.0
+offset_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer"]
+clip_contents = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="PC_TAGS" type="PanelContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qfh3j")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_TAGS"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_TAGS/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Tags"
+horizontal_alignment = 1
+
+[node name="Tag_List" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_TAGS/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="PC_CHARA" type="PanelContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qfh3j")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_CHARA"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_CHARA/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Characters"
+horizontal_alignment = 1
+
+[node name="Chara_List" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_CHARA/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="BTN_RESET_FILTERS" type="Button" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0o6fc")
+theme_override_styles/hover = ExtResource("7_lda8e")
+theme_override_styles/pressed = ExtResource("8_kyks4")
+theme_override_styles/normal = ExtResource("6_due6c")
+text = "RESET FILTERS"
+
+[node name="AD_PROFILE_NAME" type="AcceptDialog" parent="__INPUTBLOCKER__"]
+auto_translate_mode = 1
+title = ""
+initial_position = 1
+size = Vector2i(414, 131)
+unresizable = true
+borderless = true
+theme_override_styles/panel = ExtResource("9_svco5")
+ok_button_text = "Confirm"
+dialog_hide_on_ok = false
+dialog_close_on_escape = false
+
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/AD_PROFILE_NAME"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 409.0
+offset_bottom = 85.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextEdit" type="TextEdit" parent="__INPUTBLOCKER__/AD_PROFILE_NAME/MarginContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ewmxp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p4g6v")
+placeholder_text = "New Name"
+
+[node name="SETTINGS" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.996078, 0.996078, 0.996078, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="SETTINGS"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 55
+theme_override_constants/margin_bottom = 45
+
+[node name="Panel" type="Panel" parent="SETTINGS/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_idy5f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SETTINGS/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SETTINGS/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 55
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="BTN_DUMP" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
+theme_override_styles/hover_pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = ExtResource("2_2qig7")
+text = "Dump mods into ~MODS"
+
+[node name="BTN_HARDRESET" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
+theme_override_styles/hover_pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = ExtResource("2_2qig7")
+text = "Reset save data (path locations)"
+
+[node name="TAG" type="Label" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Made by AaaaaaICO
+Github -> https://github.com/AaaaaaICO"
+
+[node name="BTN_RETURN" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bpf3b")
+theme_override_styles/hover_pressed = ExtResource("8_kyks4")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = ExtResource("2_2qig7")
+text = "RETURN"
+
+[node name="Label" type="Label" parent="SETTINGS"]
+layout_mode = 0
+offset_right = 880.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 61
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_exited"]
+[connection signal="pressed" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="." method="ON_BTN_OPEN_FILE_MANAGER_PRESSED"]
+[connection signal="mouse_entered" from="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_exited"]
+[connection signal="pressed" from="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="." method="ON_BTN_OPEN_FILE_MANAGER_PRESSED"]
