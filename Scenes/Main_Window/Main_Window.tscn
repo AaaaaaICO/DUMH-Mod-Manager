@@ -956,6 +956,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_p4g6v")
 placeholder_text = "New Name"
 
 [node name="SETTINGS" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
