@@ -1,13 +1,24 @@
 # DUMH
+
 #### DNF (DU)el (M)od  (H)elper
 ## Built for DNF Duel and GUILTY GEAR -STRIVE-
 ### Dont spam click buttons as this app changes around files and may make a mistake if spammed
 This has been tested with DNF Duel and GUILTY GEAR -STRIVE- (you can try it on games that use" \RED\Content\Paks\~MODS")
 
 If you have tested this with a game that isnt in the list please message me and tell me if it works
+
+# NEWS
+##### Contains information about new releases or coming releases
+## coming releases
+### Trailer in development
+VERY early stages
+### Ordering system 
+using a mods index and if pinned to determine the order
+
 # Features
 
 ### 2 Way filter system to instantly find and organise your mods
+#### Search for characters and tags simultaneously
 ### Mod Presets
 ### A pleasant and colorfull UI
 
@@ -17,8 +28,16 @@ If you have tested this with a game that isnt in the list please message me and 
 GUILTY GEAR -STRIVE-
 DNF Duel
 ```
-# Example Images
 
+# Example Images
+### Main Menu
+![alt text](https://github.com/AaaaaaICO/DUMH-Mod-Manager/blob/main/EXTRAS/IMAGES/Overview.png "LOGO")
+
+### Filter Menu
+![alt text](https://github.com/AaaaaaICO/DUMH-Mod-Manager/blob/main/EXTRAS/IMAGES/Filters.png "LOGO")
+
+### Filter active for tag (Anime)
+![alt text](https://github.com/AaaaaaICO/DUMH-Mod-Manager/blob/main/EXTRAS/IMAGES/Anime_Filter.png "LOGO")
 
 
 # How to use
@@ -95,7 +114,7 @@ DNF Duel
 >The reviver will then replace his CONFIG file with the new one (this will remove his settings)
 
 ### Extra
->In a mods settings press:
+>While configuring a mod press:
 >
 >"Pin" to make it appear at the top
 >
@@ -104,7 +123,7 @@ DNF Duel
 >You can also see its current index at the bottom
 
 
-### Uninstall
+### Uninstalling
 >Simply go to "SETTINGS" and press "Dump mods into ~MODS"
 >
 >Do this for each of the games/external mod folders you have then simply delete the exe and the external mods folder
@@ -112,3 +131,10 @@ DNF Duel
 >Your mods will be found unfoldered inside ~MODS or ~MODS/DUMH
 >
 >If so add them to ~MODS and delete /DUMH
+
+## Warning
+Please report any bugs or gliches you find
+
+List of known bugs
+```
+```
