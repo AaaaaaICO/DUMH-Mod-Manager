@@ -142,4 +142,5 @@ Please report any bugs or gliches you find
 
 List of known bugs
 ```
+Preset not confirming locking you into the screen (times reported 1)
 ```
