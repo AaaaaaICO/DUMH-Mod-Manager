@@ -3,6 +3,7 @@
 #### DNF (DU)el (M)od  (H)elper
 ## Built for DNF Duel and GUILTY GEAR -STRIVE-
 ### Dont spam click buttons as this app changes around files and may make a mistake if spammed
+### External mods folder shouldnt be Unverum
 This has been tested with DNF Duel and GUILTY GEAR -STRIVE- (you can try it on games that use" \RED\Content\Paks\~MODS")
 
 If you have tested this with a game that isnt in the list please message me and tell me if it works
