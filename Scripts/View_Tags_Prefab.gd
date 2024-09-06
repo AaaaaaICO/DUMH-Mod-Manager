@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func ON_EXIT() -> void:
 	var NEW_TEXT = $VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/TextEdit.get_text()
+	var OLD_NAME = TAG_NAME
 	if(NEW_TEXT):
 		var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/CONFIG.json",  FileAccess.READ);
 		var JSON_STRING = FILE_DATA.get_as_text()
@@ -22,6 +23,19 @@ func ON_EXIT() -> void:
 		var Data_FILE = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + "/CONFIG.json",  FileAccess.WRITE)
 		JSON_STRING = JSON.stringify(FILE_AS_DICT)
 		Data_FILE.store_line(JSON_STRING)
+		
+		var DA = DirAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"])
+		for DIR in DA.get_directories():
+			FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + DIR + "/" + "DATA.json", FileAccess.READ)
+			JSON_STRING = FILE_DATA.get_as_text()
+			FILE_AS_DICT = JSON.parse_string(JSON_STRING)
+			for TAG in FILE_AS_DICT["TAGS"]:
+				if(TAG == OLD_NAME):
+					FILE_AS_DICT["TAGS"].erase(TAG)
+					FILE_AS_DICT["TAGS"].append(NEW_TEXT)
+			Data_FILE = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + DIR + "/" + "DATA.json",  FileAccess.WRITE)
+			JSON_STRING = JSON.stringify(FILE_AS_DICT)
+			Data_FILE.store_line(JSON_STRING)
 		Global.POPULATE = true
 func BTN_DELETE_PRESSED() -> void:
 	var UPDATE = func(FILE_AS_DICT):

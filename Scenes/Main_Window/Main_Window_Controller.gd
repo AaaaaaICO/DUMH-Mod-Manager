@@ -45,13 +45,18 @@ extends Control
 @onready var SETTINGS = get_node("SETTINGS")
 @onready var BTN_SETTINGS_RETURN = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/BTN_RETURN")
 @onready var BTN_SETTINGS_DUMP = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/BTN_DUMP")
+@onready var BTN_SETTINGS_CLONE_DUMP = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/BTN_DUMP_UNDEST")
 @onready var BTN_SETTINGS_HARD_RESET = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/BTN_HARDRESET")
+
 
 @onready var CUSTOM_CHECKBOX = "res://Scenes/PREFABS/Simple_Checkbox.tscn"
 
 
 @onready var ANIM_TRANS = get_node("ANIM_TRANS")
 @onready var FILEDIALOG = get_node("Popups/FileDialog")
+
+@onready var TE_IMPORT = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel/TextEdit")
+
 
 var INPUTBLOCKER_OPEN_TOGGLE = false
 
@@ -92,7 +97,9 @@ func _ready():
 	BTN_SETTINGS.pressed.connect(BTN_SETTINGS_PRESSED.bind())
 	BTN_SETTINGS_RETURN.pressed.connect(BTN_SETTINGS_RETURN_PRESSED.bind())
 	BTN_SETTINGS_DUMP.pressed.connect(BTN_SETTINGS_DUMP_PRESSED.bind())
+	BTN_SETTINGS_CLONE_DUMP.pressed.connect(BTN_SETTINGS_CLONE_DUMP_PRESSED.bind())
 	BTN_SETTINGS_HARD_RESET.pressed.connect(BTN_SETTINGS_HARD_RESET_PRESSED.bind())
+	
 	await Global.LOAD_SAVE()
 	await CHECK_SAVED_GAME_PATH_MANAGER()
 	await CHECK_MODS_PATH_EXISTS()
@@ -226,10 +233,10 @@ func SETUP_SAVED_USER_MODS_PATH():
 		var CONFIG_FILE = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/CONFIG.json",  FileAccess.WRITE)
 		var JSON_STRING = JSON.stringify(CONFIG_FILE_TEMPLATE)
 		CONFIG_FILE.store_line(JSON_STRING)
-	if(!DA.file_exists(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/README.txt")):
-		var CONFIG_FILE = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/README.txt",  FileAccess.WRITE)
+	if(!DA.file_exists(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/place mods here.txt")):
+		var CONFIG_FILE = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/place mods here.txt",  FileAccess.WRITE)
 		var JSON_STRING = JSON.stringify(CONFIG_FILE_TEMPLATE)
-		CONFIG_FILE.store_string('Add your .pak and .sig files into this folder to add new mods \nWhen mods are found inside ~MODS you will be asked to "IMPORT" mods please do so.\nDo not mess with the file system and to reset a mod remove the .pak and .sig and replace into your external mods folder and delete the old folder.\nWhen you add a preset it only adds the mods that are green (selected and already in your ~MODS folder).\nIf you want to uninstall go into the settings and select "Dump Mods into ~MODS folder" then you can delete this the exe and your external mods folder.\nDONT SPAM CLICK EVERYWHERE - this code is changeing files around ALOT if you spam click buttons something may go wrong.')
+		CONFIG_FILE.store_string('Add your .pak and .sig files into this folder to add new mods.')
 func CHECK_SAVED_USER_MODS_PATH_QUALITY():
 # Loop Through Files
 # If it finds .pak or .sig
@@ -366,7 +373,9 @@ func _process(delta: float) -> void:
 	#print(Global.MODS_TO_APPLY)
 	#print(Global.MODS_TO_UNAPPLY)
 	
-	
+	if(Global.REFRESH_WINDOW):
+		_ready()
+		Global.REFRESH_WINDOW = false
 	
 	if(Global.POPULATE):
 		POPULATE_MODS(Global.POPULATE_TAGS, Global.POPULATE_CHARAS)
@@ -547,6 +556,56 @@ func BTN_SETTINGS_DUMP_PRESSED():
 		print("Moved to ~MODS "+ NAME[0])
 	await CHECK_APPLIED_MODS()
 	Global.POPULATE = true
+	
+func BTN_SETTINGS_CLONE_DUMP_PRESSED():
+	var LIST = await Global.LIST_MODS_BY_INDEX()
+	Global.MODS_TO_APPLY = []
+	Global.MODS_TO_UNAPPLY = []
+	Global.MODS_APPLYED = []
+	for NAME in LIST:
+		await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".pak", Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME[0]+".pak")
+		await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".sig", Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME[0]+".sig")
+		print("Moved to ~MODS "+ NAME[0])
+	await CHECK_APPLIED_MODS()
+	Global.POPULATE = true
+	
 func BTN_SETTINGS_HARD_RESET_PRESSED():
 	Global.HARD_RESET()
 	get_tree().quit()
+	
+	
+	
+var MODSLIST_PATHS_IMPORT = []
+var MODSLIST_PATHS_DEEPER = []
+func BTN_IMPORT_PRESSED() -> void:
+	ON_BTN_OPEN_FILE_MANAGER_PRESSED
+	var FILEPATH = TE_IMPORT.get_text()
+	if(FILEPATH):
+		if(DirAccess.dir_exists_absolute(FILEPATH)):
+			var DA = DirAccess.open(FILEPATH)
+			var DIRS = DA.get_directories()	
+			for DIR in DIRS:
+				FIND(FILEPATH +"/"+ DIR)
+			
+			for DIR in MODSLIST_PATHS_DEEPER:
+				FIND(DIR)
+			for ITEM in MODSLIST_PATHS_DEEPER:
+				MODSLIST_PATHS_IMPORT.append(ITEM)
+			for X in MODSLIST_PATHS_IMPORT:
+				print("Found : " + X)
+			print(str(len(MODSLIST_PATHS_IMPORT)) + " Folders found")
+			IMPORT()
+func FIND(PATH):
+	MODSLIST_PATHS_DEEPER.erase(PATH)
+	var SUBDIRS =  DirAccess.get_directories_at(PATH)
+	for SUBDIR in SUBDIRS:
+		MODSLIST_PATHS_DEEPER.append(PATH + "/" + SUBDIR)
+	MODSLIST_PATHS_IMPORT.append(PATH)
+func IMPORT():
+	for ITEM in MODSLIST_PATHS_IMPORT:
+		var FILES =  DirAccess.get_files_at(ITEM)
+		for FILE in FILES:
+			if(FILE.contains(".pak")):
+				DirAccess.copy_absolute(ITEM + "/" + FILE, Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE)
+			if(FILE.contains(".sig")):
+				DirAccess.copy_absolute(ITEM + "/" + FILE, Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE)

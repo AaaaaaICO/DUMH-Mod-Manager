@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf6hxk36gtr51"]
+[gd_scene load_steps=7 format=3 uid="uid://bf6hxk36gtr51"]
 
 [ext_resource type="Script" path="res://Scripts/Create_Tags_Prefab.gd" id="1_nkdwh"]
 [ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="1_ugndr"]
 [ext_resource type="StyleBox" uid="uid://cqbj7m0rmflqx" path="res://Styleboxs/Button/SimpleWhite_Button_Pressed.tres" id="2_2f7rn"]
+[ext_resource type="Texture2D" uid="uid://ceik6cw6leq8q" path="res://Sprites/Cursor.png" id="4_sdtcw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en8bx"]
 bg_color = Color(0.0705882, 0.0941176, 0.121569, 1)
@@ -94,6 +95,7 @@ offset_top = -3.0
 offset_right = 1221.0
 offset_bottom = 269.0
 scale = Vector2(0.3, 0.3)
+theme_override_icons/picker_cursor = ExtResource("4_sdtcw")
 edit_alpha = false
 can_add_swatches = false
 sampler_visible = false

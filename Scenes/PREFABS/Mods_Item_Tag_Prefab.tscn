@@ -13,7 +13,6 @@ shadow_size = 4
 shadow_offset = Vector2(2, 1)
 
 [node name="TAG" type="Panel"]
-self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(80, 25)
 offset_right = 80.0
 offset_bottom = 25.0
@@ -30,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 15
 text = "reskin"
 horizontal_alignment = 1

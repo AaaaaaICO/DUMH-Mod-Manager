@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cio88eumv6006"]
+[gd_scene load_steps=48 format=3 uid="uid://cio88eumv6006"]
 
 [ext_resource type="Script" path="res://Scenes/Main_Window/Main_Window_Controller.gd" id="1_w4vn0"]
 [ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="2_2qig7"]
@@ -9,6 +9,7 @@
 [ext_resource type="StyleBox" uid="uid://d3jw442hvmgiy" path="res://Styleboxs/Button/SimpleBlack_Button_Hover.tres" id="7_lda8e"]
 [ext_resource type="StyleBox" uid="uid://b0ha7ovj1t4wq" path="res://Styleboxs/Button/SimpleBlack_Button_Pressed.tres" id="8_kyks4"]
 [ext_resource type="StyleBox" uid="uid://fik51dlbgc7j" path="res://Styleboxs/Black_Red_Panel.tres" id="9_svco5"]
+[ext_resource type="StyleBox" uid="uid://du8causkg2mk2" path="res://Styleboxs/Button/SimpleWhite_Button_Hover.tres" id="10_d6rdd"]
 
 [sub_resource type="Animation" id="Animation_7pu7j"]
 resource_name = "ANIM_IN"
@@ -103,6 +104,47 @@ corner_radius_bottom_left = 35
 corner_detail = 20
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fhw5r"]
+color = Color(1, 1, 1, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfegm"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.52549)
+shadow_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x2tdy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bcr5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlxpr"]
+bg_color = Color(0.0470588, 0.0470588, 0.0666667, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xcxe"]
+bg_color = Color(0.0470588, 0.0470588, 0.0666667, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+corner_detail = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7xj0n"]
 color = Color(1, 1, 1, 1)
 thickness = 2
 
@@ -205,11 +247,48 @@ corner_detail = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idy5f"]
 bg_color = Color(0.0784314, 0.0784314, 0.0980392, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 corner_detail = 20
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
 shadow_color = Color(0, 0, 0, 0.25)
 shadow_size = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lowi"]
+bg_color = Color(0.85098, 0.85098, 0.85098, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 12
+shadow_offset = Vector2(0, 4)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xcok4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow4mt"]
+bg_color = Color(0.0710792, 0.0947787, 0.123467, 1)
+border_color = Color(0.521569, 1, 0.521569, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 5
+shadow_offset = Vector2(0, 2.515)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ns54"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpf3b"]
 
@@ -263,7 +342,7 @@ metadata/_edit_use_anchors_ = true
 [node name="FileDialog" type="FileDialog" parent="Popups"]
 title = "Open a Directory"
 initial_position = 1
-size = Vector2i(454, 175)
+size = Vector2i(896, 671)
 ok_button_text = "Select Current Folder"
 dialog_close_on_escape = false
 file_mode = 2
@@ -271,11 +350,211 @@ access = 2
 show_hidden_files = true
 use_native_dialog = true
 
+[node name="VBC MAIN" type="VBoxContainer" parent="Popups/FileDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PC_Header" type="PanelContainer" parent="Popups/FileDialog/VBC MAIN"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_18x7u")
+
+[node name="MarginContainer" type="MarginContainer" parent="Popups/FileDialog/VBC MAIN/PC_Header"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popups/FileDialog/VBC MAIN/PC_Header/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="BTN_APPLY_MODS" type="Button" parent="Popups/FileDialog/VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "APPLY MODS"
+
+[node name="BTN_FILTER_MODS" type="Button" parent="Popups/FileDialog/VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "FILTER MODS"
+
+[node name="BTN_TAGS" type="Button" parent="Popups/FileDialog/VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "TAGS"
+
+[node name="BTN_CHARACTERS" type="Button" parent="Popups/FileDialog/VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "CHARACTERS"
+
+[node name="BTN_SETTINGS" type="Button" parent="Popups/FileDialog/VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(115, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+text = "SETTINGS"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popups/FileDialog/VBC MAIN"]
+custom_minimum_size = Vector2(880, 520)
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="PNL_MODS_LIST" type="Panel" parent="Popups/FileDialog/VBC MAIN/HBoxContainer"]
+custom_minimum_size = Vector2(595, 520)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_dpey3")
+
+[node name="MC_MODS_LIST" type="MarginContainer" parent="Popups/FileDialog/VBC MAIN/HBoxContainer/PNL_MODS_LIST"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="SC_MODS_LIST" type="ScrollContainer" parent="Popups/FileDialog/VBC MAIN/HBoxContainer/PNL_MODS_LIST/MC_MODS_LIST"]
+layout_mode = 2
+
+[node name="VBC_MODS_LIST" type="VBoxContainer" parent="Popups/FileDialog/VBC MAIN/HBoxContainer/PNL_MODS_LIST/MC_MODS_LIST/SC_MODS_LIST"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Panel" type="Panel" parent="Popups/FileDialog/VBC MAIN/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ndbeu")
+
+[node name="LBL" type="Label" parent="Popups/FileDialog/VBC MAIN/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.004
+anchor_right = 1.0
+anchor_bottom = 0.083
+offset_top = -0.0800002
+offset_bottom = -0.160004
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "PRESETS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Popups/FileDialog/VBC MAIN/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_fhw5r")
+
+[node name="MarginContainer" type="MarginContainer" parent="Popups/FileDialog/VBC MAIN/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.996
+offset_top = 35.0
+offset_bottom = 0.0799561
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Popups/FileDialog/VBC MAIN/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popups/FileDialog/VBC MAIN/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="VBC MAIN" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -283,7 +562,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_18x7u")
+theme_override_styles/panel = SubResource("StyleBoxFlat_sfegm")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBC MAIN/PC_Header"]
 layout_mode = 2
@@ -307,10 +586,10 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 theme_override_styles/hover = ExtResource("2_2qig7")
 theme_override_styles/pressed = ExtResource("3_xmw14")
-theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
 text = "APPLY MODS"
 
 [node name="BTN_FILTER_MODS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
@@ -325,10 +604,10 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 theme_override_styles/hover = ExtResource("2_2qig7")
 theme_override_styles/pressed = ExtResource("3_xmw14")
-theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
 text = "FILTER MODS"
 
 [node name="BTN_TAGS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
@@ -343,10 +622,10 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 theme_override_styles/hover = ExtResource("2_2qig7")
 theme_override_styles/pressed = ExtResource("3_xmw14")
-theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
 text = "TAGS"
 
 [node name="BTN_CHARACTERS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
@@ -361,10 +640,10 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 theme_override_styles/hover = ExtResource("2_2qig7")
 theme_override_styles/pressed = ExtResource("3_xmw14")
-theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
 text = "CHARACTERS"
 
 [node name="BTN_SETTINGS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
@@ -379,10 +658,10 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ptvfp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 theme_override_styles/hover = ExtResource("2_2qig7")
 theme_override_styles/pressed = ExtResource("3_xmw14")
-theme_override_styles/normal = SubResource("StyleBoxFlat_urx50")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
 text = "SETTINGS"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBC MAIN"]
@@ -395,7 +674,7 @@ custom_minimum_size = Vector2(595, 520)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_dpey3")
+theme_override_styles/panel = SubResource("StyleBoxFlat_dlxpr")
 
 [node name="MC_MODS_LIST" type="MarginContainer" parent="VBC MAIN/HBoxContainer/PNL_MODS_LIST"]
 layout_mode = 1
@@ -420,7 +699,7 @@ theme_override_constants/separation = 8
 [node name="Panel" type="Panel" parent="VBC MAIN/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_ndbeu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xcxe")
 
 [node name="LBL" type="Label" parent="VBC MAIN/HBoxContainer/Panel"]
 layout_mode = 1
@@ -442,7 +721,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 70.0
 grow_horizontal = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_fhw5r")
+theme_override_styles/separator = SubResource("StyleBoxLine_7xj0n")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBC MAIN/HBoxContainer/Panel"]
 layout_mode = 1
@@ -478,7 +757,6 @@ color = Color(0.098, 0.098, 0.129, 0.75)
 metadata/_edit_use_anchors_ = true
 
 [node name="MC_Get_USER_MODS_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
-visible = false
 layout_mode = 2
 anchor_top = -0.0344262
 anchor_bottom = 0.047541
@@ -1000,7 +1278,46 @@ theme_override_constants/margin_bottom = 55
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 10
+
+[node name="Panel" type="Panel" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7lowi")
+
+[node name="BTN_Import" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 2
+offset_top = 5.0
+offset_right = 505.0
+offset_bottom = 40.0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
+theme_override_styles/hover_pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("10_d6rdd")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = ExtResource("2_2qig7")
+text = "Import Foldered mods"
+
+[node name="TextEdit" type="TextEdit" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+offset_right = -2.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ow4mt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ns54")
+placeholder_text = "Path to import from"
 
 [node name="BTN_DUMP" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1013,10 +1330,27 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
 theme_override_styles/hover_pressed = ExtResource("3_xmw14")
-theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/hover = ExtResource("10_d6rdd")
 theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
-text = "Dump mods into ~MODS"
+text = "Move mods into ~MODS
+(deletes from external mods folders)"
+
+[node name="BTN_DUMP_UNDEST" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
+theme_override_styles/hover_pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("10_d6rdd")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = ExtResource("2_2qig7")
+text = "Copy mods into ~MODS"
 
 [node name="BTN_HARDRESET" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1029,7 +1363,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
 theme_override_styles/hover_pressed = ExtResource("3_xmw14")
-theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/hover = ExtResource("10_d6rdd")
 theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
 text = "Reset save data (path locations)"
@@ -1072,3 +1406,4 @@ vertical_alignment = 1
 [connection signal="mouse_entered" from="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_exited"]
 [connection signal="pressed" from="__INPUTBLOCKER__/MC_Get_Game_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="." method="ON_BTN_OPEN_FILE_MANAGER_PRESSED"]
+[connection signal="pressed" from="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel/BTN_Import" to="." method="BTN_IMPORT_PRESSED"]

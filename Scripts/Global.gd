@@ -17,10 +17,14 @@ var SETTINGS_WINDOW_OPEN = false
 var POPULATE = false
 var POPULATE_TAGS = []
 var POPULATE_CHARAS = []
-
+var REFRESH_WINDOW = false
 
 func _ready():
 	pass
+
+func _process(delta: float) -> void:
+	if(Input.is_action_just_pressed("REFRESH")):
+		REFRESH_WINDOW = true
 
 func SAVE_SAVE():
 	print("SAVING")
@@ -42,6 +46,7 @@ func LOAD_SAVE():
 	var TEMP_SAVE_DATA = config.get_value("USER", "SAVE_DATA")
 	if(TEMP_SAVE_DATA):
 		SAVE_DATA = TEMP_SAVE_DATA
+		print("Next index slot : " + str(SAVE_DATA["NEXT_INDEX_SLOT"]))
 	else:
 		SAVE_DATA = STARTING_DATA
 
