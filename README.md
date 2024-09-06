@@ -8,6 +8,8 @@ This has been tested with DNF Duel and GUILTY GEAR -STRIVE- (you can try it on g
 
 If you have tested this with a game that isnt in the list please message me and tell me if it works
 
+To add a new mod while still running the exe just press r after adding it to the files
+
 # NEWS
 ##### Contains information about new releases or coming releases
 ## coming releases
@@ -58,7 +60,9 @@ DNF Duel
 > To add mods click on the mods you want then press "APPLY MODS" at the top of the window, or to apply all click "Apply all" at the top of the mods window
 >
 > To remove a mod from your game click on it, it should appear red then click "APPLY MODS"
-
+>
+>To add a new mod while still running the exe just press r after adding it to the files
+>
 ### Change game
 >Press "SETTINGS" at the top then press "Reset save data"
 >
