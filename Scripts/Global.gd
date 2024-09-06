@@ -18,12 +18,12 @@ var POPULATE = false
 var POPULATE_TAGS = []
 var POPULATE_CHARAS = []
 var REFRESH_WINDOW = false
-
+var CAN_REFRESH = false
 func _ready():
 	pass
 
 func _process(delta: float) -> void:
-	if(Input.is_action_just_pressed("REFRESH")):
+	if(Input.is_action_just_pressed("REFRESH") and CAN_REFRESH):
 		REFRESH_WINDOW = true
 
 func SAVE_SAVE():

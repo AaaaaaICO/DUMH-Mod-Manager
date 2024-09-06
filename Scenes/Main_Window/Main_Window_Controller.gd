@@ -372,7 +372,12 @@ func _process(delta: float) -> void:
 	#print(Global.MODS_APPLYED)
 	#print(Global.MODS_TO_APPLY)
 	#print(Global.MODS_TO_UNAPPLY)
-	
+	if(INPUTBLOCKER.visible == true):
+		Global.CAN_REFRESH = false
+	else:
+		Global.CAN_REFRESH = true
+		
+		
 	if(Global.REFRESH_WINDOW):
 		_ready()
 		Global.REFRESH_WINDOW = false

@@ -757,6 +757,7 @@ color = Color(0.098, 0.098, 0.129, 0.75)
 metadata/_edit_use_anchors_ = true
 
 [node name="MC_Get_USER_MODS_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
+visible = false
 layout_mode = 2
 anchor_top = -0.0344262
 anchor_bottom = 0.047541
