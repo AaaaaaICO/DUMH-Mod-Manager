@@ -117,7 +117,7 @@ func CHECK_SAVED_GAME_PATH_MANAGER():
 		else: CHECK_SAVED_GAME_PATH()
 func CHECK_SAVED_GAME_PATH():
 	var GAME_PATH_CORRECT = func (PATH):
-		if(DirAccess.dir_exists_absolute(PATH + r"\RED") and DirAccess.dir_exists_absolute(PATH + r"\ENGINE")):
+		if(DirAccess.dir_exists_absolute(PATH + r"/RED") and DirAccess.dir_exists_absolute(PATH + r"/ENGINE")):
 			return true
 		else:
 			return false
@@ -142,10 +142,10 @@ func CHECK_SAVED_GAME_PATH():
 			INPUTBLOCKER.visible = true
 			INPUTBLOCKER_GET_GAME_PATH.visible = true
 		var DIR_SELECTED = await FILEDIALOG.dir_selected
+		print(DIR_SELECTED)
 		if(GAME_PATH_CORRECT.call(DIR_SELECTED) != true):
 			return false
 		else:
-			print("Valid Save Path")
 			Global.SAVE_DATA["GAME_PATH"] = DIR_SELECTED
 			await CHANGE_DISPLAYED_WINDOW([INPUTBLOCKER, INPUTBLOCKER_GET_GAME_PATH], [INPUTBLOCKER, INPUTBLOCKER_GET_MODS_PATH])
 			return true
