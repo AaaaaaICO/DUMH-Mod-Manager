@@ -1,5 +1,9 @@
 extends Panel
 
+func _ready() -> void:
+	var LIST = await Global.LIST_MODS_BY_INDEX()
+	%LBL_NUM.text = "Number of mods : " + str(len(LIST))
+
 
 func BTN_UNAPPLY_PRESSED() -> void:
 	var LIST = await Global.LIST_MODS_BY_INDEX()
@@ -12,7 +16,6 @@ func BTN_UNAPPLY_PRESSED() -> void:
 		print("Removed mod " + NAME[0])
 	
 	Global.POPULATE = true
-
 
 func CHECK_APPLIED_MODS():
 	Global.MODS_APPLYED = []
@@ -60,3 +63,7 @@ func BTN_PRESET_PRESSED() -> void:
 	JSON_STRING = JSON.stringify(FILE_AS_DICT)
 	Data_FILE.store_line(JSON_STRING)
 	Global.POPULATE = true
+
+
+func BTN_REFRESH_PRESSED() -> void:
+	Global.REFRESH_WINDOW = true

@@ -81,7 +81,7 @@ var RENAME_QUEUE = []
 func _ready():
 	INPUTBLOCKER_CWMIM_BTN_IMPORT.pressed.connect(CWMIN_BTN_IMPORT.bind())
 	INPUTBLOCKER_CWMIM_BTN_IGNORE.pressed.connect(CWMIN_BTN_IGNORE.bind())
-	
+	 
 	BTN_TAGS.pressed.connect(BTN_TAGS_PRESSED.bind())
 	AD_TAGS.confirmed.connect(AD_TAGS_CLOSED.bind())
 	
@@ -99,7 +99,9 @@ func _ready():
 	BTN_SETTINGS_DUMP.pressed.connect(BTN_SETTINGS_DUMP_PRESSED.bind())
 	BTN_SETTINGS_CLONE_DUMP.pressed.connect(BTN_SETTINGS_CLONE_DUMP_PRESSED.bind())
 	BTN_SETTINGS_HARD_RESET.pressed.connect(BTN_SETTINGS_HARD_RESET_PRESSED.bind())
-	
+
+	Start()
+func Start():
 	await Global.LOAD_SAVE()
 	await CHECK_SAVED_GAME_PATH_MANAGER()
 	await CHECK_MODS_PATH_EXISTS()
@@ -117,7 +119,7 @@ func CHECK_SAVED_GAME_PATH_MANAGER():
 		else: CHECK_SAVED_GAME_PATH()
 func CHECK_SAVED_GAME_PATH():
 	var GAME_PATH_CORRECT = func (PATH):
-		if(DirAccess.dir_exists_absolute(PATH + r"/RED") and DirAccess.dir_exists_absolute(PATH + r"/ENGINE")):
+		if(DirAccess.dir_exists_absolute(PATH + r"/RED") and (DirAccess.dir_exists_absolute(PATH + r"/ENGINE") or DirAccess.dir_exists_absolute(PATH + r"/Engine"))):
 			return true
 		else:
 			return false
@@ -150,7 +152,7 @@ func CHECK_SAVED_GAME_PATH():
 			await CHANGE_DISPLAYED_WINDOW([INPUTBLOCKER, INPUTBLOCKER_GET_GAME_PATH], [INPUTBLOCKER, INPUTBLOCKER_GET_MODS_PATH])
 			return true
 func CHECK_MODS_PATH_EXISTS():
-	var RED_MODS_PATH = Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS"
+	var RED_MODS_PATH = Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS"
 	if(DirAccess.dir_exists_absolute(RED_MODS_PATH)):
 		print("~Mods Exists")
 	else:
@@ -159,15 +161,15 @@ func CHECK_MODS_PATH_EXISTS():
 		print('~Mods Created : "' + RED_MODS_PATH + '"')
 func CHECK_MODS_PATH_QUALITY():
 	# Check is ~MODS/DUMH exists if not add
-	var DUMH_MODS_PATH = Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"
+	var DUMH_MODS_PATH = Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH"
 	if(DirAccess.dir_exists_absolute(DUMH_MODS_PATH)):
-		print(r"~Mods\DUMH Exists")
+		print(r"~Mods/DUMH Exists")
 	else:
-		print(r"~Mods\DUMH Doesnt Exist Creating")
+		print(r"~Mods/DUMH Doesnt Exist Creating")
 		DirAccess.make_dir_absolute(DUMH_MODS_PATH)
-		print(r'~Mods\DUMH Created : "' + DUMH_MODS_PATH + '"')
+		print(r'~Mods/DUMH Created : "' + DUMH_MODS_PATH + '"')
 	# Check if ~MODS Contains non DUMH mods and warn
-	var DA = DirAccess.open(Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS")
+	var DA = DirAccess.open(Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS")
 	if(DA.get_files()):
 		print("Files found inside ~MODS")
 		INPUTBLOCKER_CUSTOM_WARNING_MODS_IN_MODS.visible = true
@@ -179,7 +181,7 @@ func CHECK_MODS_PATH_QUALITY():
 		if(CWMIM_BTN_REPONSE == "IMPORT"):
 			for FILE in DA.get_files():
 				print(FILE)
-				var FILEPATH = Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS" + "/" + FILE
+				var FILEPATH = Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS" + "/" + FILE
 				RENAME_QUEUER(FILEPATH,  FILE, false)
 	else:
 		print("No files found inside ~MODS")
@@ -187,7 +189,7 @@ func CHECK_MODS_PATH_QUALITY():
 	print("Currently applied mods : "+str(Global.MODS_APPLYED))
 func CHECK_APPLIED_MODS():
 	Global.MODS_APPLYED = []
-	var DA = DirAccess.open(Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH")
+	var DA = DirAccess.open(Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH")
 	for FILE in DA.get_files():
 		if(FILE.contains(".pak")):
 			Global.MODS_APPLYED.append(FILE.left(FILE.length() - 4))
@@ -201,7 +203,7 @@ func CHECK_SAVED_USER_MODS_PATH_MANAGER():
 		else: CHECK_SAVED_USER_MODS_PATH()
 func CHECK_SAVED_USER_MODS_PATH():# Also checks to make sure it exists
 	var CHECK_PATH_CORRECT = func(PATH):
-		if(DirAccess.dir_exists_absolute(PATH) and !DirAccess.dir_exists_absolute(PATH + r"\RED") and !DirAccess.dir_exists_absolute(PATH + r"\Engine")):
+		if(DirAccess.dir_exists_absolute(PATH) and !DirAccess.dir_exists_absolute(PATH + r"/RED") and !DirAccess.dir_exists_absolute(PATH + r"/Engine")):
 			return true
 		else: return false
 		
@@ -379,7 +381,7 @@ func _process(delta: float) -> void:
 		
 		
 	if(Global.REFRESH_WINDOW):
-		_ready()
+		Start()
 		Global.REFRESH_WINDOW = false
 	
 	if(Global.POPULATE):
@@ -528,12 +530,12 @@ func BTN_RESET_FILTERS_PRESSED():
 func BTN_APPLY_PRESSED():
 	await CHECK_APPLIED_MODS()
 	for NAME in Global.MODS_TO_APPLY:
-		DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME+"/"+NAME+".pak", Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME+".pak")
-		DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME+"/"+NAME+".sig", Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME+".sig")
+		DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME+"/"+NAME+".pak", Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH"+"/"+NAME+".pak")
+		DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME+"/"+NAME+".sig", Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH"+"/"+NAME+".sig")
 		print("Applyed mod " + NAME)
 	for NAME in Global.MODS_TO_UNAPPLY:
-		DirAccess.remove_absolute(Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME+".pak")
-		DirAccess.remove_absolute(Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME+".sig")
+		DirAccess.remove_absolute(Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH"+"/"+NAME+".pak")
+		DirAccess.remove_absolute(Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH"+"/"+NAME+".sig")
 		print("Removed mod " + NAME)
 	Global.MODS_TO_APPLY = []
 	Global.MODS_TO_UNAPPLY = []
@@ -547,59 +549,87 @@ func BTN_SETTINGS_RETURN_PRESSED():
 	CHANGE_DISPLAYED_WINDOW([SETTINGS],[])
 
 func BTN_SETTINGS_DUMP_PRESSED():
-	var LIST = await Global.LIST_MODS_BY_INDEX()
-	Global.MODS_TO_APPLY = []
-	Global.MODS_TO_UNAPPLY = []
-	Global.MODS_APPLYED = []
-	for NAME in LIST:
-		await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".pak", Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME[0]+".pak")
-		await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".sig", Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME[0]+".sig")
-		await DirAccess.remove_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".sig")
-		await DirAccess.remove_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".pak")
-		await DirAccess.remove_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/DATA.json")
-		await DirAccess.remove_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0])
-		print("Moved to ~MODS "+ NAME[0])
-	await CHECK_APPLIED_MODS()
-	Global.POPULATE = true
-	
+	%__INPUTBLOCKER__.show()
+	%CONFIRM_DIALOG_CUSTOM.show()
+	%CDC_TITLE.text = "WARINING!"
+	%CDC_MSG.text = "Are you sure you want dump your mods into ~MODS. (Destructive)"
+	var CONFIRMED = await %CONFIRM_DIALOG_CUSTOM.Pressed
+	if(CONFIRMED):
+		var LIST = await Global.LIST_MODS_BY_INDEX()
+		Global.MODS_TO_APPLY = []
+		Global.MODS_TO_UNAPPLY = []
+		Global.MODS_APPLYED = []
+		for NAME in LIST:
+			await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".pak", Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH"+"/"+NAME[0]+".pak")
+			await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".sig", Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH"+"/"+NAME[0]+".sig")
+			await DirAccess.remove_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".sig")
+			await DirAccess.remove_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".pak")
+			await DirAccess.remove_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/DATA.json")
+			await DirAccess.remove_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0])
+			print("Moved to ~MODS "+ NAME[0])
+		await CHECK_APPLIED_MODS()
+		Global.POPULATE = true
+	%__INPUTBLOCKER__.hide()
+	%CONFIRM_DIALOG_CUSTOM.hide()
 func BTN_SETTINGS_CLONE_DUMP_PRESSED():
-	var LIST = await Global.LIST_MODS_BY_INDEX()
-	Global.MODS_TO_APPLY = []
-	Global.MODS_TO_UNAPPLY = []
-	Global.MODS_APPLYED = []
-	for NAME in LIST:
-		await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".pak", Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME[0]+".pak")
-		await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".sig", Global.SAVE_DATA["GAME_PATH"] + r"\RED\Content\Paks\~MODS\DUMH"+"/"+NAME[0]+".sig")
-		print("Moved to ~MODS "+ NAME[0])
-	await CHECK_APPLIED_MODS()
-	Global.POPULATE = true
-	
+	%__INPUTBLOCKER__.show()
+	%CONFIRM_DIALOG_CUSTOM.show()
+	%CDC_TITLE.text = "WARINING!"
+	%CDC_MSG.text = "Are you sure you want dump your mods into ~MODS. (NON-Destructive)"
+	var CONFIRMED = await %CONFIRM_DIALOG_CUSTOM.Pressed
+	if(CONFIRMED):
+		var LIST = await Global.LIST_MODS_BY_INDEX()
+		Global.MODS_TO_APPLY = []
+		Global.MODS_TO_UNAPPLY = []
+		Global.MODS_APPLYED = []
+		for NAME in LIST:
+			await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".pak", Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH"+"/"+NAME[0]+".pak")
+			await DirAccess.copy_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]+"/"+NAME[0]+"/"+NAME[0]+".sig", Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS/DUMH"+"/"+NAME[0]+".sig")
+			print("Moved to ~MODS "+ NAME[0])
+		await CHECK_APPLIED_MODS()
+		Global.POPULATE = true
+	%__INPUTBLOCKER__.hide()
+	%CONFIRM_DIALOG_CUSTOM.hide()
 func BTN_SETTINGS_HARD_RESET_PRESSED():
-	Global.HARD_RESET()
-	get_tree().quit()
-	
+	%__INPUTBLOCKER__.show()
+	%CONFIRM_DIALOG_CUSTOM.show()
+	%CDC_TITLE.text = "WARINING!"
+	%CDC_MSG.text = "Are you sure you want to do a hard reset."
+	var CONFIRMED = await %CONFIRM_DIALOG_CUSTOM.Pressed
+	if(CONFIRMED):
+		Global.HARD_RESET()
+		get_tree().quit()
+	%__INPUTBLOCKER__.hide()
+	%CONFIRM_DIALOG_CUSTOM.hide()
 	
 	
 var MODSLIST_PATHS_IMPORT = []
 var MODSLIST_PATHS_DEEPER = []
 func BTN_IMPORT_PRESSED() -> void:
-	ON_BTN_OPEN_FILE_MANAGER_PRESSED
+	%__INPUTBLOCKER__.show()
+	%CONFIRM_DIALOG_CUSTOM.show()
+	%CDC_TITLE.text = "WARINING!"
 	var FILEPATH = TE_IMPORT.get_text()
-	if(FILEPATH):
-		if(DirAccess.dir_exists_absolute(FILEPATH)):
-			var DA = DirAccess.open(FILEPATH)
-			var DIRS = DA.get_directories()	
-			for DIR in DIRS:
-				FIND(FILEPATH +"/"+ DIR)
-			
-			for DIR in MODSLIST_PATHS_DEEPER:
-				FIND(DIR)
-			for ITEM in MODSLIST_PATHS_DEEPER:
-				MODSLIST_PATHS_IMPORT.append(ITEM)
-			for X in MODSLIST_PATHS_IMPORT:
-				print("Found : " + X)
-			print(str(len(MODSLIST_PATHS_IMPORT)) + " Folders found")
-			IMPORT()
+	%CDC_MSG.text = "Are you sure you want to import mods from " + FILEPATH + "."
+	var CONFIRMED = await %CONFIRM_DIALOG_CUSTOM.Pressed
+	if(CONFIRMED):
+		if(FILEPATH):
+			if(DirAccess.dir_exists_absolute(FILEPATH)):
+				var DA = DirAccess.open(FILEPATH)
+				var DIRS = DA.get_directories()	
+				for DIR in DIRS:
+					FIND(FILEPATH +"/"+ DIR)
+				
+				for DIR in MODSLIST_PATHS_DEEPER:
+					FIND(DIR)
+				for ITEM in MODSLIST_PATHS_DEEPER:
+					MODSLIST_PATHS_IMPORT.append(ITEM)
+				for X in MODSLIST_PATHS_IMPORT:
+					print("Found : " + X)
+				print(str(len(MODSLIST_PATHS_IMPORT)) + " Folders found")
+				IMPORT()
+	%__INPUTBLOCKER__.hide()
+	%CONFIRM_DIALOG_CUSTOM.hide()
 func FIND(PATH):
 	MODSLIST_PATHS_DEEPER.erase(PATH)
 	var SUBDIRS =  DirAccess.get_directories_at(PATH)

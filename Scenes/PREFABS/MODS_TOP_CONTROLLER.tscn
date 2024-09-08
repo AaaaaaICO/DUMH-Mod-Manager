@@ -21,9 +21,9 @@ corner_detail = 20
 
 [node name="Main_Panel" type="Panel"]
 clip_contents = true
-custom_minimum_size = Vector2(555, 80)
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(555, 96)
+offset_right = 555.0
+offset_bottom = 96.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ti0du")
 script = ExtResource("1_yvjjh")
 
@@ -83,6 +83,24 @@ theme_override_styles/pressed = ExtResource("2_iahfq")
 theme_override_styles/normal = ExtResource("3_nlwog")
 text = "Preset"
 
+[node name="BTN_REFRESH" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j44l6")
+theme_override_styles/hover = ExtResource("1_en0pt")
+theme_override_styles/pressed = ExtResource("2_iahfq")
+theme_override_styles/normal = ExtResource("3_nlwog")
+text = "Refresh"
+
+[node name="LBL_NUM" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Number of mods : 00"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_APPLY" to="." method="BTN_APPLY_ALL_PRESSED"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_UNAPPLY" to="." method="BTN_UNAPPLY_PRESSED"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_PRESET" to="." method="BTN_PRESET_PRESSED"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_REFRESH" to="." method="BTN_REFRESH_PRESSED"]
