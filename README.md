@@ -139,7 +139,8 @@ DNF Duel
 
 ## Warning
 Please report any bugs or gliches you find
-
+This program doesnt support any mods that dont use .pak and .sig files this includes text mods for Guilty Gear Strive
 List of known bugs
 ```
 ```
+
