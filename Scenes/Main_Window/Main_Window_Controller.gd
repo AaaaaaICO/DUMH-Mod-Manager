@@ -34,10 +34,6 @@ extends Control
 
 
 @onready var BTN_FILTER = get_node("VBC MAIN/PC_Header/MarginContainer/HBoxContainer/BTN_FILTER_MODS")
-@onready var AD_FILTER = get_node("__INPUTBLOCKER__/AD_FILTER")
-@onready var AD_FILTER_TAGS_LIST = get_node("__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_TAGS/VBoxContainer3/Tag_List")
-@onready var AD_FILTER_CHARAS_LIST = get_node("__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_CHARA/VBoxContainer3/Chara_List")
-@onready var AD_FILTER_BTN_RESET_FILTERS = get_node("__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/BTN_RESET_FILTERS")
 
 @onready var BTN_APPLY = get_node("VBC MAIN/PC_Header/MarginContainer/HBoxContainer/BTN_APPLY_MODS")
 
@@ -89,8 +85,8 @@ func _ready():
 	AD_CHARA.confirmed.connect(AD_CHARA_CLOSED.bind())
 	
 	BTN_FILTER.pressed.connect(BTN_FILTER_PRESSED.bind())
-	AD_FILTER.confirmed.connect(AD_FILTER_CLOSED.bind())
-	AD_FILTER_BTN_RESET_FILTERS.pressed.connect(BTN_RESET_FILTERS_PRESSED.bind())
+	%AD_FILTER.confirmed.connect(AD_FILTER_CLOSED.bind())
+	%BTN_RESET_FILTERS.pressed.connect(BTN_RESET_FILTERS_PRESSED.bind())
 	
 	BTN_APPLY.pressed.connect(BTN_APPLY_PRESSED.bind())
 	
@@ -293,6 +289,17 @@ func CHECK_SAVED_USER_MODS_PATH_QUALITY():
 			var JSON_STRING = JSON.stringify(TEMP_DATA_FILE_TEMPLATE)
 			Data_FILE.store_line(JSON_STRING)
 			print("Added DATA.json:")
+
+	for FOLDER in DA.get_directories():
+		DA = DirAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FOLDER)
+		var FILES_IN_FOLDER = DA.get_files()
+		for FILE in FILES_IN_FOLDER:
+			if(FILE.contains(".pak")):
+				if(FILE.left(FILE.length() - 4) != FOLDER):
+					print("Renaming folder " + FOLDER + " to " + FILE)
+					DirAccess.rename_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FOLDER, Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE.left(FILE.length() - 4))
+					
+
 func POPULATE_MODS(TAGS, CHARACTERS):
 	Global.POPULATE = false
 	var DA = DirAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"])
@@ -481,13 +488,13 @@ func AD_CHARA_CLOSED():
 
 
 func BTN_FILTER_PRESSED():
-	AD_FILTER.visible = true
+	%AD_FILTER.visible = true
 	INPUTBLOCKER.visible = true
-	for N in AD_FILTER_TAGS_LIST.get_children():
-		AD_FILTER_TAGS_LIST.remove_child(N)
+	for N in %Tag_List.get_children():
+		%Tag_List.remove_child(N)
 		N.queue_free()
-	for N in AD_FILTER_CHARAS_LIST.get_children():
-		AD_FILTER_CHARAS_LIST.remove_child(N)
+	for N in %Chara_List.get_children():
+		%Chara_List.remove_child(N)
 		N.queue_free()
 	var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/CONFIG.json", FileAccess.READ);
 	var JSON_STRING = FILE_DATA.get_as_text()
@@ -500,29 +507,29 @@ func BTN_FILTER_PRESSED():
 		for X in Global.POPULATE_TAGS:
 			if(TAG[0] == X):
 				ITEM.set_pressed(true)
-		AD_FILTER_TAGS_LIST.add_child(ITEM)
+		%Tag_List.add_child(ITEM)
 	for CHARA in CHARAS:
 		var ITEM = load(CUSTOM_CHECKBOX).instantiate()
 		ITEM.set_text(CHARA)
 		for X in Global.POPULATE_CHARAS:
 			if(CHARA == X):
 				ITEM.set_pressed(true)
-		AD_FILTER_CHARAS_LIST.add_child(ITEM)
+		%Chara_List.add_child(ITEM)
 func AD_FILTER_CLOSED():
 	INPUTBLOCKER.visible = false
 	Global.POPULATE_TAGS = []
 	Global.POPULATE_CHARAS = []
-	for TAG in AD_FILTER_TAGS_LIST.get_children():
+	for TAG in %Tag_List.get_children():
 		if(TAG.is_pressed()):
 			Global.POPULATE_TAGS.append(TAG.get_text())
-	for CHARA in AD_FILTER_CHARAS_LIST.get_children():
+	for CHARA in %Chara_List.get_children():
 		if(CHARA.is_pressed()):
 			Global.POPULATE_CHARAS.append(CHARA.get_text())
 	Global.POPULATE = true
 
 func BTN_RESET_FILTERS_PRESSED():
 	INPUTBLOCKER.visible = false
-	AD_FILTER.visible = false
+	%AD_FILTER.visible = false
 	Global.POPULATE_TAGS = []
 	Global.POPULATE_CHARAS = []
 	Global.POPULATE = true

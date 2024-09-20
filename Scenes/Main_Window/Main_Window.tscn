@@ -1052,6 +1052,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="AD_FILTER" type="AcceptDialog" parent="__INPUTBLOCKER__"]
+unique_name_in_owner = true
 auto_translate_mode = 1
 initial_position = 1
 size = Vector2i(432, 414)
@@ -1071,63 +1072,69 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 15
 
-[node name="ScrollContainer" type="ScrollContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer"]
-clip_contents = false
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 
-[node name="PC_TAGS" type="PanelContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="PC_TAGS" type="PanelContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_qfh3j")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_TAGS"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer/PC_TAGS"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_TAGS/VBoxContainer3"]
+[node name="Label" type="Label" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer/PC_TAGS/VBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Tags"
 horizontal_alignment = 1
 
-[node name="Tag_List" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_TAGS/VBoxContainer3"]
+[node name="ScrollContainer" type="ScrollContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer/PC_TAGS/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tag_List" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer/PC_TAGS/VBoxContainer3/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="PC_CHARA" type="PanelContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="PC_CHARA" type="PanelContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_qfh3j")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_CHARA"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer/PC_CHARA"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_CHARA/VBoxContainer3"]
+[node name="Label" type="Label" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer/PC_CHARA/VBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Characters"
 horizontal_alignment = 1
 
-[node name="Chara_List" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/PC_CHARA/VBoxContainer3"]
+[node name="ScrollContainer" type="ScrollContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer/PC_CHARA/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Chara_List" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer/HBoxContainer/PC_CHARA/VBoxContainer3/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="BTN_RESET_FILTERS" type="Button" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="BTN_RESET_FILTERS" type="Button" parent="__INPUTBLOCKER__/AD_FILTER/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0o6fc")
