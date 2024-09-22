@@ -688,6 +688,37 @@ grow_vertical = 2
 color = Color(0.098, 0.098, 0.129, 0.75)
 metadata/_edit_use_anchors_ = true
 
+[node name="SAVE_SLOTS_MANAGER" type="AcceptDialog" parent="__INPUTBLOCKER__"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(432, 414)
+borderless = true
+always_on_top = true
+theme_override_styles/panel = ExtResource("9_svco5")
+
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/SAVE_SLOTS_MANAGER"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 427.0
+offset_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="__INPUTBLOCKER__/SAVE_SLOTS_MANAGER/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="__INPUTBLOCKER__/SAVE_SLOTS_MANAGER/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
 [node name="MC_Get_USER_MODS_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
 visible = false
 layout_mode = 2

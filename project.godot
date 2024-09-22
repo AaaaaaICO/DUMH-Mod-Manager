@@ -14,6 +14,7 @@ config/name="DUMH (DNF Duel Mod Helper)"
 config/description="DUMH a mod helper for DNF Duel and Guilty gear -strive- this can probability be used for "
 run/main_scene="res://Scenes/Main_Window/Main_Window.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+run/max_fps=30
 boot_splash/image="res://EXTRAS/IMAGES/DUMHLOGO.png"
 config/icon="res://EXTRAS/IMAGES/DUMHLOGO.png"
 

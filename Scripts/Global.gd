@@ -4,8 +4,17 @@ var SAVE_DATA = {
 	"GAME_PATH" : "",
 	"USER_MODS_FOLDER_PATH": "",
 	"USER_MODS_PRESETS" : [],
-	"NEXT_INDEX_SLOT": 0
+	"NEXT_INDEX_SLOT": 0,
+	
+	"SAVE_SLOTS": []
+		
 }
+var SAVE_SLOT_TEMPLATE = {
+	"SLOT_NAME": "",
+	"SLOT_GAME_PATH": "",
+	"SLOT_MODS_FOLDER_PATH": "",
+}
+
 var SAVE_LOCATION = "user://saves.cfg"
 
 var MODS_APPLYED = []
