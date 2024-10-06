@@ -37,6 +37,24 @@ func _process(delta: float) -> void:
 
 func SAVE_SAVE():
 	print("SAVING")
+	var HAS = false
+	for SLOT in SAVE_DATA["SAVE_SLOTS"]:
+		if(SLOT["SLOT_GAME_PATH"] != ""):
+			if(SLOT["SLOT_GAME_PATH"] == SAVE_DATA["GAME_PATH"] and SLOT["SLOT_MODS_FOLDER_PATH"] == SAVE_DATA["USER_MODS_FOLDER_PATH"]):
+				HAS = true
+	if(!HAS):
+		print("Creating save slot")
+		var NEW_SAVE_SLOT = {
+			"SLOT_NAME": "",
+			"SLOT_GAME_PATH": "",
+			"SLOT_MODS_FOLDER_PATH": "",
+		}
+		NEW_SAVE_SLOT["SLOT_NAME"] = SAVE_DATA["GAME_PATH"].get_file()
+		print(NEW_SAVE_SLOT)
+		NEW_SAVE_SLOT["SLOT_GAME_PATH"] = SAVE_DATA["GAME_PATH"]
+		NEW_SAVE_SLOT["SLOT_MODS_FOLDER_PATH"] = SAVE_DATA["USER_MODS_FOLDER_PATH"]
+		SAVE_DATA["SAVE_SLOTS"].append(NEW_SAVE_SLOT)
+		print(SAVE_DATA["SAVE_SLOTS"])
 	var config = ConfigFile.new()
 	var configFile = config.load(SAVE_LOCATION)
 	config.set_value("USER", "SAVE_DATA", SAVE_DATA)
@@ -48,7 +66,8 @@ func LOAD_SAVE():
 		"GAME_PATH" : "",
 		"USER_MODS_FOLDER_PATH": "",
 		"USER_MODS_PRESETS" : [],
-		"NEXT_INDEX_SLOT": 0
+		"NEXT_INDEX_SLOT": 0,
+		"SAVE_SLOTS": []
 	}
 	var config = ConfigFile.new()
 	var configFile = config.load(SAVE_LOCATION)

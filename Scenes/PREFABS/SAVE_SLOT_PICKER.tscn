@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcvu6voiuodft"]
+[gd_scene load_steps=6 format=3 uid="uid://dcvu6voiuodft"]
 
+[ext_resource type="Script" path="res://Scripts/SAVE_SLOT_PREFAB.gd" id="1_2xh55"]
 [ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="1_52cgk"]
 [ext_resource type="StyleBox" uid="uid://cqbj7m0rmflqx" path="res://Styleboxs/Button/SimpleWhite_Button_Pressed.tres" id="2_eon8i"]
 
@@ -21,6 +22,7 @@ offset_right = 394.0
 offset_bottom = 95.0
 scale = Vector2(1.00455, 1)
 theme_override_styles/panel = SubResource("StyleBoxFlat_en8bx")
+script = ExtResource("1_2xh55")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -31,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LBL_Title" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "SAVE SLOT NAME"
@@ -52,12 +55,15 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 25
 placeholder_text = "Slot name"
 
 [node name="BTN_OPEN" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -75,9 +81,10 @@ theme_override_styles/normal = ExtResource("1_52cgk")
 text = "OPEN"
 
 [node name="BTN_DELETE" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 theme_override_colors/font_disabled_color = Color(1, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
@@ -92,5 +99,3 @@ theme_override_styles/normal = ExtResource("1_52cgk")
 text = "Delete"
 
 [connection signal="tree_exiting" from="." to="." method="ON_EXIT"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/BTN_OPEN" to="." method="BTN_DELETE_PRESSED"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/BTN_DELETE" to="." method="BTN_DELETE_PRESSED"]

@@ -53,6 +53,7 @@ extends Control
 
 @onready var TE_IMPORT = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel/TextEdit")
 
+@onready var SAVE_SLOTS_MAKER_PREFAB = "res://Scenes/PREFABS/SAVE_SLOT_MAKER.tscn"
 
 var INPUTBLOCKER_OPEN_TOGGLE = false
 
@@ -89,16 +90,26 @@ func _ready():
 	%BTN_RESET_FILTERS.pressed.connect(BTN_RESET_FILTERS_PRESSED.bind())
 	
 	BTN_APPLY.pressed.connect(BTN_APPLY_PRESSED.bind())
+	%BTN_SAVE_SLOTS.pressed.connect(BTN_SAVE_SLOTS_PRESSED.bind())
+	%SAVE_SLOTS_MANAGER.confirmed.connect(SAVE_SLOTS_CLOSED.bind())
 	
 	BTN_SETTINGS.pressed.connect(BTN_SETTINGS_PRESSED.bind())
 	BTN_SETTINGS_RETURN.pressed.connect(BTN_SETTINGS_RETURN_PRESSED.bind())
 	BTN_SETTINGS_DUMP.pressed.connect(BTN_SETTINGS_DUMP_PRESSED.bind())
 	BTN_SETTINGS_CLONE_DUMP.pressed.connect(BTN_SETTINGS_CLONE_DUMP_PRESSED.bind())
 	BTN_SETTINGS_HARD_RESET.pressed.connect(BTN_SETTINGS_HARD_RESET_PRESSED.bind())
-
+	
+	await Global.LOAD_SAVE()
+	
+	
+	if(!Global.SAVE_DATA["SAVE_SLOTS"].is_empty()):
+		if(!len(Global.SAVE_DATA["SAVE_SLOTS"]) == 1):	
+			var SAVE_SLOTS_MAKER = load(SAVE_SLOTS_MAKER_PREFAB).instantiate()
+			%SAVE_SLOTS_MANAGER_VBOX.add_child(SAVE_SLOTS_MAKER)
+			%SAVE_SLOTS_MANAGER.show()
+			%__INPUTBLOCKER__.show()
 	Start()
 func Start():
-	await Global.LOAD_SAVE()
 	await CHECK_SAVED_GAME_PATH_MANAGER()
 	await CHECK_MODS_PATH_EXISTS()
 	await CHECK_MODS_PATH_QUALITY()
@@ -245,7 +256,7 @@ func CHECK_SAVED_USER_MODS_PATH_QUALITY():
 	var FILES_IN_PATH = DA.get_files()
 	print("FOUND ", FILES_IN_PATH)
 	for FILE in FILES_IN_PATH:
-		if(!FILE == "CONFIG.json" and !FILE == "README.txt"):
+		if(!FILE == "CONFIG.json" and !FILE == "README.txt" and !FILE == "place mods here.txt"):
 			print("Searching File : " + FILE)
 			if(FILE.contains(".pak")):
 				if(DA.file_exists(FILE.left(FILE.length() - 4) + ".sig")):
@@ -651,3 +662,17 @@ func IMPORT():
 				DirAccess.copy_absolute(ITEM + "/" + FILE, Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE)
 			if(FILE.contains(".sig")):
 				DirAccess.copy_absolute(ITEM + "/" + FILE, Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE)
+
+
+func BTN_SAVE_SLOTS_PRESSED():
+	var SAVE_SLOTS_MAKER = load(SAVE_SLOTS_MAKER_PREFAB).instantiate()
+	%SAVE_SLOTS_MANAGER_VBOX.add_child(SAVE_SLOTS_MAKER)
+	%SAVE_SLOTS_MANAGER.show()
+	%__INPUTBLOCKER__.show()
+
+
+func SAVE_SLOTS_CLOSED():
+	%SAVE_SLOTS_MANAGER.hide()
+	%__INPUTBLOCKER__.hide()
+	for CHILD in %SAVE_SLOTS_MANAGER_VBOX.get_children():
+		CHILD.queue_free()
