@@ -350,10 +350,9 @@ func POPULATE_MODS(TAGS, CHARACTERS):
 			else:
 				CORRECT_TAGS = true
 			if(CHARACTERS):
-				for MOD_CHAR in FILE_AS_DICT["CHARACTER"]:
-					for APPLYED_CHAR in CHARACTERS:
-						if(APPLYED_CHAR == MOD_CHAR):
-							CORRECT_CHARS = true
+				for CHAR in CHARACTERS:
+					if(CHAR == FILE_AS_DICT["CHARACTER"]):
+						CORRECT_CHARS = true
 			else:
 				CORRECT_CHARS = true
 			if(CORRECT_TAGS and CORRECT_CHARS):
