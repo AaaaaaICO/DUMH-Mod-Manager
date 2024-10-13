@@ -30,6 +30,7 @@ using a mods index and if pinned to determine the order
 ```
 GUILTY GEAR -STRIVE-
 DNF Duel
+Granblue Fantasy Versus
 ```
 
 # Example Images
@@ -44,6 +45,7 @@ DNF Duel
 
 
 # How to use
+SLIGHTLY OUTDATED
 ### Setup
 > Open the exe called "DUMH (Mod Helper)"
 >
