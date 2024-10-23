@@ -40,7 +40,7 @@ func _ready():
 	var EXE_PATH = OS.get_executable_path()
 	var FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).exe")[0]
 	var NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.exe"
-	var NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMHBACKDATED.exe"
+	var NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMH_BACKDATED.exe"
 	
 	if(FileAccess.file_exists(NEW_OLD_PATH)):
 		DirAccess.remove_absolute(NEW_OLD_PATH)
