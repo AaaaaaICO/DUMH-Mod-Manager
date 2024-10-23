@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cio88eumv6006"]
+[gd_scene load_steps=45 format=3 uid="uid://cio88eumv6006"]
 
 [ext_resource type="Script" path="res://Scenes/Main_Window/Main_Window_Controller.gd" id="1_w4vn0"]
 [ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="2_2qig7"]
@@ -228,6 +228,13 @@ _data = {
 "WARNING_IN": SubResource("Animation_24gb8")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke5un"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_56rfc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8c0kc"]
@@ -264,7 +271,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w4vn0")
 
+[node name="HTTP_REQUEST" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[node name="HTTP_DOWNLOADER" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+use_threads = true
+
 [node name="ANIM_TRANS" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_8hej4")
 }
@@ -301,7 +316,8 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="FileDialog" type="FileDialog" parent="Popups"]
+[node name="FILEDIALOG" type="FileDialog" parent="Popups"]
+unique_name_in_owner = true
 title = "Open a Directory"
 initial_position = 1
 size = Vector2i(400, 400)
@@ -339,6 +355,7 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="BTN_APPLY_MODS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(155, 57)
 layout_mode = 2
 size_flags_vertical = 4
@@ -357,6 +374,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
 text = "APPLY"
 
 [node name="BTN_FILTER_MODS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(155, 57)
 layout_mode = 2
 size_flags_vertical = 4
@@ -375,6 +393,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
 text = "FILTER"
 
 [node name="BTN_TAGS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(115, 57)
 layout_mode = 2
 size_flags_vertical = 4
@@ -393,6 +412,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
 text = "TAGS"
 
 [node name="BTN_CHARACTERS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(115, 57)
 layout_mode = 2
 size_flags_vertical = 4
@@ -430,6 +450,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
 text = "Save Slots"
 
 [node name="BTN_SETTINGS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(155, 57)
 layout_mode = 2
 size_flags_vertical = 4
@@ -476,6 +497,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 
 [node name="VBC_MODS_LIST" type="VBoxContainer" parent="VBC MAIN/HBoxContainer/PNL_MODS_LIST/MC_MODS_LIST/SC_MODS_LIST"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
@@ -523,12 +545,14 @@ theme_override_constants/margin_bottom = 8
 [node name="ScrollContainer" type="ScrollContainer" parent="VBC MAIN/HBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBC MAIN/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
+[node name="PRESET_LIST_CONTAINER" type="VBoxContainer" parent="VBC MAIN/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SETTINGS" type="ColorRect" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -582,6 +606,7 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_7lowi")
 
 [node name="BTN_Import" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel"]
+unique_name_in_owner = true
 layout_mode = 2
 offset_top = 5.0
 offset_right = 505.0
@@ -600,7 +625,8 @@ theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
 text = "Import Foldered mods"
 
-[node name="TextEdit" type="TextEdit" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel"]
+[node name="TE_IMPORT" type="TextEdit" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -615,6 +641,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_0ns54")
 placeholder_text = "Path to import from"
 
 [node name="BTN_DUMP" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -632,6 +659,7 @@ text = "Move mods into ~MODS
 (deletes from external mods folders)"
 
 [node name="BTN_DUMP_UNDEST" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -648,6 +676,7 @@ theme_override_styles/normal = ExtResource("2_2qig7")
 text = "Copy mods into ~MODS"
 
 [node name="BTN_HARDRESET" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -664,12 +693,12 @@ theme_override_styles/normal = ExtResource("2_2qig7")
 text = "Reset save data (path locations)"
 
 [node name="TAG" type="Label" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Made by AaaaaaICO
-Github -> https://github.com/AaaaaaICO"
 
 [node name="BTN_RETURN" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -697,7 +726,6 @@ vertical_alignment = 1
 
 [node name="__INPUTBLOCKER__" type="ColorRect" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -740,6 +768,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="MC_Get_USER_MODS_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 anchor_top = -0.0344262
@@ -836,6 +865,7 @@ text = "**Do NOT make this folder inside your game's path**
 horizontal_alignment = 1
 
 [node name="MC_Get_Game_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -932,7 +962,8 @@ layout_mode = 2
 text = "Epic: when the game is closed press the 3 dots > manage > the folder icon by uninstall
 Steam: Right click > Properties... > Installed Files > Browse\""
 
-[node name="CC_CUSTOM_WARNING_MODS_IN_~MODS" type="CenterContainer" parent="__INPUTBLOCKER__"]
+[node name="CC_CUSTOM_WARNING_MODS_IN_MODS" type="CenterContainer" parent="__INPUTBLOCKER__"]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
@@ -944,20 +975,21 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 
-[node name="WARNING_AnimationPlayer" type="AnimationPlayer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS"]
+[node name="WARNING_AnimationPlayer" type="AnimationPlayer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS"]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_8squj")
 }
 
-[node name="S2D_WARNING" type="Sprite2D" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS"]
+[node name="S2D_WARNING" type="Sprite2D" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS"]
 position = Vector2(-2, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_gbhlx")
 
-[node name="NULL" type="Control" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS"]
+[node name="NULL" type="Control" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS"]
 layout_mode = 2
 
-[node name="LBL_WARNING_TEXT" type="Label" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL"]
+[node name="LBL_WARNING_TEXT" type="Label" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS/NULL"]
 layout_mode = 0
 offset_left = -214.0
 offset_top = -67.0
@@ -971,7 +1003,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 clip_text = true
 
-[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL"]
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS/NULL"]
 layout_mode = 2
 offset_left = -214.0
 offset_top = 37.0
@@ -980,16 +1012,18 @@ offset_bottom = 100.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS/NULL/MarginContainer"]
 layout_mode = 2
 
-[node name="BTN_IMPORT" type="Button" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer/HBoxContainer"]
+[node name="BTN_WARNING_IMPORT" type="Button" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS/NULL/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("6_due6c")
 text = "IMPORT"
 
-[node name="BTN_IGNORE" type="Button" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer/HBoxContainer"]
+[node name="BTN_WARNING_IGNORE" type="Button" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS/NULL/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/hover = ExtResource("7_lda8e")
@@ -997,7 +1031,96 @@ theme_override_styles/pressed = ExtResource("8_kyks4")
 theme_override_styles/normal = ExtResource("6_due6c")
 text = "IGNORE"
 
+[node name="CC_UPDATE_AVAILABLE" type="MarginContainer" parent="__INPUTBLOCKER__"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 220
+theme_override_constants/margin_top = 220
+theme_override_constants/margin_right = 220
+theme_override_constants/margin_bottom = 220
+
+[node name="Panel" type="Panel" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ke5un")
+
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="LBL_UPDATE_TITLE" type="Label" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "Update available!!!"
+horizontal_alignment = 1
+
+[node name="LBL_UPDATE_VER" type="Label" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "v0.0.0 > v0.0.0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BTN_UPDATE" type="Button" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+text = "Update Now!"
+
+[node name="BTN_DELINE_UPDATE" type="Button" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(155, 57)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+text = "Decline"
+
 [node name="CC_WARNING" type="CenterContainer" parent="__INPUTBLOCKER__"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1017,6 +1140,7 @@ texture = ExtResource("5_gbhlx")
 layout_mode = 2
 
 [node name="BTN_WARNING" type="Button" parent="__INPUTBLOCKER__/CC_WARNING/NULL"]
+unique_name_in_owner = true
 layout_mode = 2
 offset_left = -215.0
 offset_top = -113.0
@@ -1029,6 +1153,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_034l4")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3ctb3")
 
 [node name="LBL_WARNING_TEXT" type="Label" parent="__INPUTBLOCKER__/CC_WARNING/NULL"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -214.0
 offset_top = -67.0
@@ -1042,7 +1167,8 @@ horizontal_alignment = 1
 autowrap_mode = 2
 clip_text = true
 
-[node name="AD_Chara" type="AcceptDialog" parent="__INPUTBLOCKER__"]
+[node name="AD_CHARA" type="AcceptDialog" parent="__INPUTBLOCKER__"]
+unique_name_in_owner = true
 auto_translate_mode = 1
 initial_position = 1
 size = Vector2i(432, 414)
@@ -1050,7 +1176,7 @@ borderless = true
 always_on_top = true
 theme_override_styles/panel = ExtResource("9_svco5")
 
-[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/AD_Chara"]
+[node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/AD_CHARA"]
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 427.0
@@ -1062,17 +1188,19 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 15
 
-[node name="ScrollContainer" type="ScrollContainer" parent="__INPUTBLOCKER__/AD_Chara/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="__INPUTBLOCKER__/AD_CHARA/MarginContainer"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_Chara/MarginContainer/ScrollContainer"]
+[node name="AD_CHARA_LIST" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_CHARA/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="AD_Tags" type="AcceptDialog" parent="__INPUTBLOCKER__"]
+unique_name_in_owner = true
 auto_translate_mode = 1
 initial_position = 1
 size = Vector2i(432, 414)
@@ -1096,7 +1224,8 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_Tags/MarginContainer/ScrollContainer"]
+[node name="TAGS_CONTAINER" type="VBoxContainer" parent="__INPUTBLOCKER__/AD_Tags/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1305,7 +1434,6 @@ theme_override_styles/pressed = ExtResource("8_kyks4")
 theme_override_styles/normal = ExtResource("6_due6c")
 text = "Cancel"
 
-[connection signal="pressed" from="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel/BTN_Import" to="." method="BTN_IMPORT_PRESSED"]
 [connection signal="mouse_entered" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_exited"]
 [connection signal="pressed" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="." method="ON_BTN_OPEN_FILE_MANAGER_PRESSED"]

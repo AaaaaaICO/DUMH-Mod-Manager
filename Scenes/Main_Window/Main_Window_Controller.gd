@@ -1,57 +1,18 @@
 extends Control
 
-@onready var INPUTBLOCKER = get_node("__INPUTBLOCKER__")
-@onready var INPUTBLOCKER_GET_GAME_PATH = get_node("__INPUTBLOCKER__/MC_Get_Game_Path")
-@onready var INPUTBLOCKER_GET_MODS_PATH = get_node("__INPUTBLOCKER__/MC_Get_USER_MODS_Path")
+signal LATEST_RELEASE_FOUND(LATEST_RELEASE)
+signal CONFIRMED_DOWNLOAD_INSTRUCTIONS(ACCEPTED)
 
-@onready var INPUTBLOCKER_WARNING = get_node("__INPUTBLOCKER__/CC_WARNING")
-@onready var INPUTBLOCKER_WARNING_LBL = get_node("__INPUTBLOCKER__/CC_WARNING/NULL/LBL_WARNING_TEXT")
-@onready var INPUTBLOCKER_WARNING_BTN = get_node("__INPUTBLOCKER__/CC_WARNING/NULL/BTN_WARNING")
-@onready var INPUTBLOCKER_CUSTOM_WARNING_MODS_IN_MODS = get_node("__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS")
-@onready var INPUTBLOCKER_CWMIM_BTN_IMPORT = get_node("__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer/HBoxContainer/BTN_IMPORT")
-@onready var INPUTBLOCKER_CWMIM_BTN_IGNORE = get_node("__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/NULL/MarginContainer/HBoxContainer/BTN_IGNORE")
-@onready var INPUTBLOCKER_CWMIM_ANIM_PLAYER = get_node("__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_~MODS/WARNING_AnimationPlayer")
+signal WAS_DOWNLOAD_SUCCESSFUL(SUCCESSFUL)
 
 @onready var MODS_ITEM_PREFAB = "res://Scenes/PREFABS/Mods_Item_Prefab.tscn"
 @onready var MODS_ITEM_CONTROLLER_PREFAB = "res://Scenes/PREFABS/MODS_TOP_CONTROLLER.tscn"
-@onready var MOD_LIST = get_node("VBC MAIN/HBoxContainer/PNL_MODS_LIST/MC_MODS_LIST/SC_MODS_LIST/VBC_MODS_LIST")
-@onready var PRESET_LIST = get_node("VBC MAIN/HBoxContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer")
 @onready var PRESET_ITEM = "res://Scenes/PREFABS/Preset_Prefab.tscn"
-
-
-
-@onready var BTN_TAGS = get_node("VBC MAIN/PC_Header/MarginContainer/HBoxContainer/BTN_TAGS")
-@onready var AD_TAGS = get_node("__INPUTBLOCKER__/AD_Tags")
-@onready var AD_TAGS_LIST = get_node("__INPUTBLOCKER__/AD_Tags/MarginContainer/ScrollContainer/VBoxContainer")
 @onready var VIEW_TAGS_PREFAB = "res://Scenes/PREFABS/View_Tags_Prefab.tscn"
 @onready var CREATE_TAGS_PREFAB = "res://Scenes/PREFABS/Create_Tags_Prefab.tscn"
-
-@onready var BTN_CHARA = get_node("VBC MAIN/PC_Header/MarginContainer/HBoxContainer/BTN_CHARACTERS")
-@onready var AD_CHARA = get_node("__INPUTBLOCKER__/AD_Chara")
-@onready var AD_CHARA_LIST = get_node("__INPUTBLOCKER__/AD_Chara/MarginContainer/ScrollContainer/VBoxContainer")
 @onready var VIEW_CHARA_PREFAB = "res://Scenes/PREFABS/View_Chara_Prefab.tscn"
 @onready var CREATE_CHARA_PREFAB = "res://Scenes/PREFABS/Create_Chara_Prefab.tscn"
-
-
-@onready var BTN_FILTER = get_node("VBC MAIN/PC_Header/MarginContainer/HBoxContainer/BTN_FILTER_MODS")
-
-@onready var BTN_APPLY = get_node("VBC MAIN/PC_Header/MarginContainer/HBoxContainer/BTN_APPLY_MODS")
-
-@onready var BTN_SETTINGS = get_node("VBC MAIN/PC_Header/MarginContainer/HBoxContainer/BTN_SETTINGS")
-@onready var SETTINGS = get_node("SETTINGS")
-@onready var BTN_SETTINGS_RETURN = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/BTN_RETURN")
-@onready var BTN_SETTINGS_DUMP = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/BTN_DUMP")
-@onready var BTN_SETTINGS_CLONE_DUMP = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/BTN_DUMP_UNDEST")
-@onready var BTN_SETTINGS_HARD_RESET = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/BTN_HARDRESET")
-
-
 @onready var CUSTOM_CHECKBOX = "res://Scenes/PREFABS/Simple_Checkbox.tscn"
-
-
-@onready var ANIM_TRANS = get_node("ANIM_TRANS")
-@onready var FILEDIALOG = get_node("Popups/FileDialog")
-
-@onready var TE_IMPORT = get_node("SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel/TextEdit")
 
 @onready var SAVE_SLOTS_MAKER_PREFAB = "res://Scenes/PREFABS/SAVE_SLOT_MAKER.tscn"
 
@@ -76,39 +37,109 @@ var DATA_FILE_TEMPLATE = {
 # Called when the node enters the scene tree for the first time.
 var RENAME_QUEUE = []
 func _ready():
-	INPUTBLOCKER_CWMIM_BTN_IMPORT.pressed.connect(CWMIN_BTN_IMPORT.bind())
-	INPUTBLOCKER_CWMIM_BTN_IGNORE.pressed.connect(CWMIN_BTN_IGNORE.bind())
+	var EXE_PATH = OS.get_executable_path()
+	var FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).exe")[0]
+	var NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.exe"
+	var NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMHBACKDATED.exe"
+	
+	if(FileAccess.file_exists(NEW_OLD_PATH)):
+		DirAccess.remove_absolute(NEW_OLD_PATH)
+	
+	%BTN_UPDATE.pressed.connect(BTN_UPDATE_PRESSED.bind()) 
+	%BTN_DELINE_UPDATE.pressed.connect(BTN_DECLINE_UPDATE_PRESSED.bind()) 
+	
+	%BTN_WARNING_IMPORT.pressed.connect(CWMIN_BTN_IMPORT.bind())
+	%BTN_WARNING_IGNORE.pressed.connect(CWMIN_BTN_IGNORE.bind())
 	 
-	BTN_TAGS.pressed.connect(BTN_TAGS_PRESSED.bind())
-	AD_TAGS.confirmed.connect(AD_TAGS_CLOSED.bind())
+	%BTN_TAGS.pressed.connect(BTN_TAGS_PRESSED.bind())
+	%AD_Tags.confirmed.connect(AD_TAGS_CLOSED.bind())
 	
-	BTN_CHARA.pressed.connect(BTN_CHARA_PRESSED.bind())
-	AD_CHARA.confirmed.connect(AD_CHARA_CLOSED.bind())
+	%BTN_CHARACTERS.pressed.connect(BTN_CHARA_PRESSED.bind())
+	%AD_CHARA.confirmed.connect(AD_CHARA_CLOSED.bind())
 	
-	BTN_FILTER.pressed.connect(BTN_FILTER_PRESSED.bind())
+	%BTN_FILTER_MODS.pressed.connect(BTN_FILTER_PRESSED.bind())
 	%AD_FILTER.confirmed.connect(AD_FILTER_CLOSED.bind())
 	%BTN_RESET_FILTERS.pressed.connect(BTN_RESET_FILTERS_PRESSED.bind())
 	
-	BTN_APPLY.pressed.connect(BTN_APPLY_PRESSED.bind())
+	%BTN_APPLY_MODS.pressed.connect(BTN_APPLY_PRESSED.bind())
 	%BTN_SAVE_SLOTS.pressed.connect(BTN_SAVE_SLOTS_PRESSED.bind())
 	%SAVE_SLOTS_MANAGER.confirmed.connect(SAVE_SLOTS_CLOSED.bind())
 	
-	BTN_SETTINGS.pressed.connect(BTN_SETTINGS_PRESSED.bind())
-	BTN_SETTINGS_RETURN.pressed.connect(BTN_SETTINGS_RETURN_PRESSED.bind())
-	BTN_SETTINGS_DUMP.pressed.connect(BTN_SETTINGS_DUMP_PRESSED.bind())
-	BTN_SETTINGS_CLONE_DUMP.pressed.connect(BTN_SETTINGS_CLONE_DUMP_PRESSED.bind())
-	BTN_SETTINGS_HARD_RESET.pressed.connect(BTN_SETTINGS_HARD_RESET_PRESSED.bind())
+	%BTN_SETTINGS.pressed.connect(BTN_SETTINGS_PRESSED.bind())
+	%BTN_RETURN.pressed.connect(BTN_SETTINGS_RETURN_PRESSED.bind())
+	%BTN_Import.pressed.connect(BTN_IMPORT_PRESSED.bind())
+	%BTN_DUMP.pressed.connect(BTN_SETTINGS_DUMP_PRESSED.bind())
+	%BTN_DUMP_UNDEST.pressed.connect(BTN_SETTINGS_CLONE_DUMP_PRESSED.bind())
+	%BTN_HARDRESET.pressed.connect(BTN_SETTINGS_HARD_RESET_PRESSED.bind())
+	
+	%TAG.text = "Made by AaaaaaICO
+	Github -> https://github.com/AaaaaaICO
+	" + Global.CURRENT_VER
 	
 	await Global.LOAD_SAVE()
 	
 	
+	%HTTP_REQUEST.request_completed.connect(GET_LATEST_RELEASE.bind())
+	$HTTP_REQUEST.request("https://github.com/AaaaaaICO/DUMH-Mod-Manager/tags")
+	var LATEST_RELEASE_LINK = await LATEST_RELEASE_FOUND
+	var LINK_SPLITS = LATEST_RELEASE_LINK.split("/")
+	var RELEASE_VER = LINK_SPLITS[5]
+	if(RELEASE_VER != Global.CURRENT_VER):
+		%__INPUTBLOCKER__.show()
+		%CC_UPDATE_AVAILABLE.show()
+		var DOWNLOAD_ADRESS = ""
+		var PATH = ""
+		if(Global.USER_SYSTEM == "Windows"):
+			DOWNLOAD_ADRESS = "https://github.com/AaaaaaICO/DUMH-Mod-Manager/releases/download/"+ RELEASE_VER +"/DUMH.Mod.Helper.exe"
+			PATH = "DUMH.Mod.Helper.exe"
+		if(Global.USER_SYSTEM == "Linux"):
+			DOWNLOAD_ADRESS = "https://github.com/AaaaaaICO/DUMH-Mod-Manager/releases/download/"+ RELEASE_VER +"/DUMH.Mod.Helper.x86_64"
+			PATH = "DUMH.Mod.Helper.x86_64"
+		%LBL_UPDATE_VER.text = Global.CURRENT_VER + " -> " + RELEASE_VER
+		var CONFIRMED_DOWNLOAD_INSTRUCTIONS_RESULTS = await CONFIRMED_DOWNLOAD_INSTRUCTIONS
+		if(CONFIRMED_DOWNLOAD_INSTRUCTIONS_RESULTS):
+			%HTTP_DOWNLOADER.request_completed.connect(DOWNLOAD.bind())
+			%HTTP_DOWNLOADER.set_download_file(PATH)
+			var REQUEST = %HTTP_DOWNLOADER.request(DOWNLOAD_ADRESS)
+			var SUCCESSFUL = await WAS_DOWNLOAD_SUCCESSFUL
+			if(SUCCESSFUL):
+				print("DOWNLOAD SUCCESSFUL!!!")
+				print("Manipulating exe names")
+				DirAccess.rename_absolute(EXE_PATH, NEW_OLD_PATH)
+				DirAccess.rename_absolute(NEW_EXE_PATH, EXE_PATH)
+				#DirAccess.remove_absolute(NEW_OLD_PATH)
+				get_tree().quit()
+			else:
+				print("DOWNLOAD FAILED!!!")
+
+
 	if(!Global.SAVE_DATA["SAVE_SLOTS"].is_empty()):
 		if(!len(Global.SAVE_DATA["SAVE_SLOTS"]) == 1):	
 			var SAVE_SLOTS_MAKER = load(SAVE_SLOTS_MAKER_PREFAB).instantiate()
 			%SAVE_SLOTS_MANAGER_VBOX.add_child(SAVE_SLOTS_MAKER)
 			%SAVE_SLOTS_MANAGER.show()
 			%__INPUTBLOCKER__.show()
+	
 	Start()
+
+func GET_LATEST_RELEASE(_result, _response_code, _headers, _body):
+	var parser: XMLParser = XMLParser.new()
+	parser.open_buffer(_body)
+	while parser.read() != ERR_FILE_EOF:
+		if(parser.has_attribute("href")):
+			if(parser.get_attribute_count() >= 2):
+				if(parser.get_attribute_value(1).contains("/AaaaaaICO/DUMH-Mod-Manager/releases/tag")):
+					LATEST_RELEASE_FOUND.emit(parser.get_attribute_value(1))
+		
+		
+func DOWNLOAD(result, _response_code, _headers, _body):
+	if result != OK:
+		push_error("Download Failed")
+		WAS_DOWNLOAD_SUCCESSFUL.emit(false)
+	else:
+		WAS_DOWNLOAD_SUCCESSFUL.emit(true)
+	
+	
 func Start():
 	await CHECK_SAVED_GAME_PATH_MANAGER()
 	await CHECK_MODS_PATH_EXISTS()
@@ -132,31 +163,31 @@ func CHECK_SAVED_GAME_PATH():
 			return false
 	if(Global.SAVE_DATA["GAME_PATH"]): # Checks Dir
 		if(GAME_PATH_CORRECT.call(Global.SAVE_DATA["GAME_PATH"]) == false):
-			if(INPUTBLOCKER_GET_GAME_PATH.visible == false):
-				INPUTBLOCKER.visible = true
-				INPUTBLOCKER_GET_GAME_PATH.visible = true
-			var DIR_SELECTED = await FILEDIALOG.dir_selected
+			if(%MC_Get_Game_Path.visible == false):
+				%__INPUTBLOCKER__.visible = true
+				%MC_Get_Game_Path.visible = true
+			var DIR_SELECTED = await %FILEDIALOG.dir_selected
 			if(GAME_PATH_CORRECT.call(DIR_SELECTED) != true):
 				Global.SAVE_DATA["GAME_PATH"]
 				return false
 			else:
 				print("Valid Save Path")
 			Global.SAVE_DATA["GAME_PATH"] = DIR_SELECTED
-			await CHANGE_DISPLAYED_WINDOW([INPUTBLOCKER, INPUTBLOCKER_GET_GAME_PATH], [INPUTBLOCKER, INPUTBLOCKER_GET_MODS_PATH])
+			await CHANGE_DISPLAYED_WINDOW([%__INPUTBLOCKER__, %MC_Get_Game_Path], [%__INPUTBLOCKER__, %MC_Get_USER_MODS_Path])
 			return true
 		else:
 			return true
 	else: # Gets Dir
-		if(INPUTBLOCKER_GET_GAME_PATH.visible == false):
-			INPUTBLOCKER.visible = true
-			INPUTBLOCKER_GET_GAME_PATH.visible = true
-		var DIR_SELECTED = await FILEDIALOG.dir_selected
+		if(%MC_Get_Game_Path.visible == false):
+			%__INPUTBLOCKER__.visible = true
+			%MC_Get_Game_Path.visible = true
+		var DIR_SELECTED = await %FILEDIALOG.dir_selected
 		print(DIR_SELECTED)
 		if(GAME_PATH_CORRECT.call(DIR_SELECTED) != true):
 			return false
 		else:
 			Global.SAVE_DATA["GAME_PATH"] = DIR_SELECTED
-			await CHANGE_DISPLAYED_WINDOW([INPUTBLOCKER, INPUTBLOCKER_GET_GAME_PATH], [INPUTBLOCKER, INPUTBLOCKER_GET_MODS_PATH])
+			await CHANGE_DISPLAYED_WINDOW([%__INPUTBLOCKER__, %MC_Get_Game_Path], [%__INPUTBLOCKER__, %MC_Get_USER_MODS_Path])
 			return true
 func CHECK_MODS_PATH_EXISTS():
 	var RED_MODS_PATH = Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS"
@@ -179,12 +210,12 @@ func CHECK_MODS_PATH_QUALITY():
 	var DA = DirAccess.open(Global.SAVE_DATA["GAME_PATH"] + r"/RED/Content/Paks/~MODS")
 	if(DA.get_files()):
 		print("Files found inside ~MODS")
-		INPUTBLOCKER_CUSTOM_WARNING_MODS_IN_MODS.visible = true
-		INPUTBLOCKER.visible = true
-		INPUTBLOCKER_CWMIM_ANIM_PLAYER.play("WARNING_IN")
+		%CC_CUSTOM_WARNING_MODS_IN_MODS.visible = true
+		%__INPUTBLOCKER__.visible = true
+		%WARNING_AnimationPlayer.play("WARNING_IN")
 		await AWAIT_WHILE_CWMIM_REPONSE_NULL()
 		print("User chose to " + CWMIM_BTN_REPONSE + " mods")
-		INPUTBLOCKER_CUSTOM_WARNING_MODS_IN_MODS.visible = false
+		%CC_CUSTOM_WARNING_MODS_IN_MODS.visible = false
 		if(CWMIM_BTN_REPONSE == "IMPORT"):
 			for FILE in DA.get_files():
 				print(FILE)
@@ -221,20 +252,20 @@ func CHECK_SAVED_USER_MODS_PATH():# Also checks to make sure it exists
 		else:
 			print("Valid Mods Path")
 			Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] = Global.SAVE_DATA["USER_MODS_FOLDER_PATH"]
-			if(INPUTBLOCKER_GET_MODS_PATH.visible):
-				await CHANGE_DISPLAYED_WINDOW([INPUTBLOCKER, INPUTBLOCKER_GET_MODS_PATH], [])
+			if(%MC_Get_USER_MODS_Path.visible):
+				await CHANGE_DISPLAYED_WINDOW([%__INPUTBLOCKER__, %MC_Get_USER_MODS_Path], [])
 			return true
 	else:
-		if(!INPUTBLOCKER_GET_MODS_PATH.visible):
-			INPUTBLOCKER.visible = true
-			INPUTBLOCKER_GET_MODS_PATH.visible = true
-		var DIR_SELECTED = await FILEDIALOG.dir_selected
+		if(!%MC_Get_USER_MODS_Path.visible):
+			%__INPUTBLOCKER__.visible = true
+			%MC_Get_USER_MODS_Path.visible = true
+		var DIR_SELECTED = await %FILEDIALOG.dir_selected
 		if(CHECK_PATH_CORRECT.call(DIR_SELECTED) != true):
 			return false
 		else:
 			print("Valid Mods Path")
 			Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] = DIR_SELECTED
-			await CHANGE_DISPLAYED_WINDOW([INPUTBLOCKER, INPUTBLOCKER_GET_MODS_PATH], [])
+			await CHANGE_DISPLAYED_WINDOW([%__INPUTBLOCKER__, %MC_Get_USER_MODS_Path], [])
 			return true
 func SETUP_SAVED_USER_MODS_PATH():
 	var DA = DirAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"])
@@ -314,25 +345,25 @@ func CHECK_SAVED_USER_MODS_PATH_QUALITY():
 func POPULATE_MODS(TAGS, CHARACTERS):
 	Global.POPULATE = false
 	var DA = DirAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"])
-	for N in MOD_LIST.get_children():
-		MOD_LIST.remove_child(N)
+	for N in %VBC_MODS_LIST.get_children():
+		%VBC_MODS_LIST.remove_child(N)
 		N.queue_free()
 		
 	var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/CONFIG.json",  FileAccess.READ);
 	var JSON_STRING = FILE_DATA.get_as_text()
 	var FILE_AS_DICT = JSON.parse_string(JSON_STRING)
 
-	for N in PRESET_LIST.get_children():
-		PRESET_LIST.remove_child(N)
+	for N in %PRESET_LIST_CONTAINER.get_children():
+		%PRESET_LIST_CONTAINER.remove_child(N)
 		N.queue_free()
 		
 	for PRESET in FILE_AS_DICT["PRESETS"]:
 		var ITEM = load(PRESET_ITEM).instantiate()
 		ITEM.NAME = PRESET[0]
-		PRESET_LIST.add_child(ITEM)
+		%PRESET_LIST_CONTAINER.add_child(ITEM)
 		
 	var ITEM = load(MODS_ITEM_CONTROLLER_PREFAB).instantiate()
-	MOD_LIST.add_child(ITEM)
+	%VBC_MODS_LIST.add_child(ITEM)
 	
 	for DIR in await Global.LIST_MODS_BY_INDEX():
 		var FULL_DIR_PATH = Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + DIR[0]
@@ -385,13 +416,10 @@ func POPULATE_MODS(TAGS, CHARACTERS):
 func CREATE_MOD_PREFAB(SETTINGS):
 	var ITEM = load(MODS_ITEM_PREFAB).instantiate()
 	ITEM.SETTINGS = SETTINGS
-	MOD_LIST.add_child(ITEM)
+	%VBC_MODS_LIST.add_child(ITEM)
 		
 func _process(delta: float) -> void:
-	#print(Global.MODS_APPLYED)
-	#print(Global.MODS_TO_APPLY)
-	#print(Global.MODS_TO_UNAPPLY)
-	if(INPUTBLOCKER.visible == true):
+	if(%__INPUTBLOCKER__.visible == true):
 		Global.CAN_REFRESH = false
 	else:
 		Global.CAN_REFRESH = true
@@ -406,9 +434,9 @@ func _process(delta: float) -> void:
 	if(Global.SETTINGS_WINDOW_OPEN):
 		INPUTBLOCKER_OPEN_TOGGLE = true
 	if(Global.SETTINGS_WINDOW_OPEN):
-		INPUTBLOCKER.visible = true
+		%__INPUTBLOCKER__.visible = true
 	if(!Global.SETTINGS_WINDOW_OPEN and INPUTBLOCKER_OPEN_TOGGLE):
-		INPUTBLOCKER.visible = false
+		%__INPUTBLOCKER__.visible = false
 		INPUTBLOCKER_OPEN_TOGGLE = false
 	
 func RENAME_QUEUER(FROM, TO, RUN):
@@ -419,27 +447,27 @@ func RENAME_QUEUER(FROM, TO, RUN):
 		for ITEM in RENAME_QUEUE:
 			DirAccess.rename_absolute(ITEM[0], Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + ITEM[1])
 func DISPLAY_WARNING(MESSAGE):
-	INPUTBLOCKER_WARNING.visible = true
-	INPUTBLOCKER.visible = true
-	INPUTBLOCKER_WARNING_LBL.set_text(MESSAGE)
-	await INPUTBLOCKER_WARNING_BTN.pressed
-	INPUTBLOCKER_WARNING.visible = false
-	INPUTBLOCKER.visible = false
+	%CC_WARNING.visible = true
+	%__INPUTBLOCKER__.visible = true
+	%LBL_WARNING_TEXT.set_text(MESSAGE)
+	await %BTN_WARNING.pressed
+	%CC_WARNING.visible = false
+	%__INPUTBLOCKER__.visible = false
 func CHANGE_DISPLAYED_WINDOW(OLD_WINDOWS, NEW_WINDOWS):
 	print("--CHANGING WINDOW FROM--")
 	print(OLD_WINDOWS)
 	print("--CHANGING WINDOW TO--")
 	print(NEW_WINDOWS)
-	ANIM_TRANS.play("ANIM_IN")
-	await ANIM_TRANS.animation_finished
+	%ANIM_TRANS.play("ANIM_IN")
+	await %ANIM_TRANS.animation_finished
 	for WINDOW in OLD_WINDOWS:
 		WINDOW.visible = false
 	for WINDOW in NEW_WINDOWS:
 		WINDOW.visible = true
-	ANIM_TRANS.play("ANIM_OUT")
-	await ANIM_TRANS.animation_finished
+	%ANIM_TRANS.play("ANIM_OUT")
+	await %ANIM_TRANS.animation_finished
 func ON_BTN_OPEN_FILE_MANAGER_PRESSED(): # Makes the filedialog visible
-	FILEDIALOG.visible = true
+	%FILEDIALOG.visible = true
 
 
 
@@ -450,10 +478,10 @@ func CWMIN_BTN_IGNORE():
 
 
 func BTN_TAGS_PRESSED():
-	AD_TAGS.visible = true
-	INPUTBLOCKER.visible = true
-	for N in AD_TAGS_LIST.get_children():
-		AD_TAGS_LIST.remove_child(N)
+	%AD_Tags.visible = true
+	%__INPUTBLOCKER__.visible = true
+	for N in %TAGS_CONTAINER.get_children():
+		%TAGS_CONTAINER.remove_child(N)
 		N.queue_free()
 	var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/CONFIG.json",  FileAccess.READ);
 	var JSON_STRING = FILE_DATA.get_as_text()
@@ -461,23 +489,23 @@ func BTN_TAGS_PRESSED():
 	var TAGS = FILE_AS_DICT["TAGS"]
 	
 	var ITEM = load(CREATE_TAGS_PREFAB).instantiate()
-	AD_TAGS_LIST.add_child(ITEM)
+	%TAGS_CONTAINER.add_child(ITEM)
 	for X in TAGS:
 		var ITEM_TAG = load(VIEW_TAGS_PREFAB).instantiate()
 		ITEM_TAG.TAG_NAME = X[0]
-		AD_TAGS_LIST.add_child(ITEM_TAG)
+		%TAGS_CONTAINER.add_child(ITEM_TAG)
 func AD_TAGS_CLOSED():
-	INPUTBLOCKER.visible = false
-	for N in AD_TAGS_LIST.get_children():
-		AD_TAGS_LIST.remove_child(N)
+	%__INPUTBLOCKER__.visible = false
+	for N in %TAGS_CONTAINER.get_children():
+		%TAGS_CONTAINER.remove_child(N)
 		N.queue_free()
 
 
 func BTN_CHARA_PRESSED():
-	AD_CHARA.visible = true
-	INPUTBLOCKER.visible = true
-	for N in AD_CHARA_LIST.get_children():
-		AD_CHARA_LIST.remove_child(N)
+	%AD_CHARA.visible = true
+	%__INPUTBLOCKER__.visible = true
+	for N in %AD_CHARA_LIST.get_children():
+		%AD_CHARA_LIST.remove_child(N)
 		N.queue_free()
 	var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/CONFIG.json",  FileAccess.READ);
 	var JSON_STRING = FILE_DATA.get_as_text()
@@ -485,21 +513,21 @@ func BTN_CHARA_PRESSED():
 	var CHARA = FILE_AS_DICT["CHARACTERS"]
 	
 	var ITEM = load(CREATE_CHARA_PREFAB).instantiate()
-	AD_CHARA_LIST.add_child(ITEM)
+	%AD_CHARA_LIST.add_child(ITEM)
 	for X in CHARA:
 		var ITEM_CHARA = load(VIEW_CHARA_PREFAB).instantiate()
 		ITEM_CHARA.CHARA_NAME = X
-		AD_CHARA_LIST.add_child(ITEM_CHARA)
+		%AD_CHARA_LIST.add_child(ITEM_CHARA)
 func AD_CHARA_CLOSED():
-	INPUTBLOCKER.visible = false
-	for N in AD_CHARA_LIST.get_children():
-		AD_CHARA_LIST.remove_child(N)
+	%__INPUTBLOCKER__.visible = false
+	for N in %AD_CHARA_LIST.get_children():
+		%AD_CHARA_LIST.remove_child(N)
 		N.queue_free()
 
 
 func BTN_FILTER_PRESSED():
 	%AD_FILTER.visible = true
-	INPUTBLOCKER.visible = true
+	%__INPUTBLOCKER__.visible = true
 	for N in %Tag_List.get_children():
 		%Tag_List.remove_child(N)
 		N.queue_free()
@@ -526,7 +554,7 @@ func BTN_FILTER_PRESSED():
 				ITEM.set_pressed(true)
 		%Chara_List.add_child(ITEM)
 func AD_FILTER_CLOSED():
-	INPUTBLOCKER.visible = false
+	%__INPUTBLOCKER__.visible = false
 	Global.POPULATE_TAGS = []
 	Global.POPULATE_CHARAS = []
 	for TAG in %Tag_List.get_children():
@@ -538,7 +566,7 @@ func AD_FILTER_CLOSED():
 	Global.POPULATE = true
 
 func BTN_RESET_FILTERS_PRESSED():
-	INPUTBLOCKER.visible = false
+	%__INPUTBLOCKER__.visible = false
 	%AD_FILTER.visible = false
 	Global.POPULATE_TAGS = []
 	Global.POPULATE_CHARAS = []
@@ -560,10 +588,10 @@ func BTN_APPLY_PRESSED():
 	Global.POPULATE = true
 
 func BTN_SETTINGS_PRESSED():
-	CHANGE_DISPLAYED_WINDOW([],[SETTINGS])
+	CHANGE_DISPLAYED_WINDOW([],[%SETTINGS])
 
 func BTN_SETTINGS_RETURN_PRESSED():
-	CHANGE_DISPLAYED_WINDOW([SETTINGS],[])
+	CHANGE_DISPLAYED_WINDOW([%SETTINGS],[])
 
 func BTN_SETTINGS_DUMP_PRESSED():
 	%__INPUTBLOCKER__.show()
@@ -626,7 +654,7 @@ func BTN_IMPORT_PRESSED() -> void:
 	%__INPUTBLOCKER__.show()
 	%CONFIRM_DIALOG_CUSTOM.show()
 	%CDC_TITLE.text = "WARINING!"
-	var FILEPATH = TE_IMPORT.get_text()
+	var FILEPATH = %TE_IMPORT.get_text()
 	%CDC_MSG.text = "Are you sure you want to import mods from " + FILEPATH + "."
 	var CONFIRMED = await %CONFIRM_DIALOG_CUSTOM.Pressed
 	if(CONFIRMED):
@@ -675,3 +703,10 @@ func SAVE_SLOTS_CLOSED():
 	%__INPUTBLOCKER__.hide()
 	for CHILD in %SAVE_SLOTS_MANAGER_VBOX.get_children():
 		CHILD.queue_free()
+
+func BTN_UPDATE_PRESSED():
+	CONFIRMED_DOWNLOAD_INSTRUCTIONS.emit(true)
+func BTN_DECLINE_UPDATE_PRESSED():
+	CONFIRMED_DOWNLOAD_INSTRUCTIONS.emit(false)
+	%CC_UPDATE_AVAILABLE.hide()
+	%__INPUTBLOCKER__.hide()

@@ -1,5 +1,8 @@
 extends Node
 
+var CURRENT_VER = "v1.1.5-beta"
+var USER_SYSTEM = OS.get_name()
+
 var SAVE_DATA = {
 	"GAME_PATH" : "",
 	"USER_MODS_FOLDER_PATH": "",
@@ -28,8 +31,8 @@ var POPULATE_TAGS = []
 var POPULATE_CHARAS = []
 var REFRESH_WINDOW = false
 var CAN_REFRESH = false
-func _ready():
-	pass
+
+
 
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("REFRESH") and CAN_REFRESH):
