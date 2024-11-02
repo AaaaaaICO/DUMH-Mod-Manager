@@ -295,7 +295,6 @@ offset_bottom = 610.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.921569, 0.921569, 0.921569, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="CR_Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -305,7 +304,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0784314, 0.0784314, 0.0980392, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="Popups" type="Control" parent="."]
 layout_mode = 1
@@ -314,7 +312,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="FILEDIALOG" type="FileDialog" parent="Popups"]
 unique_name_in_owner = true
@@ -1073,7 +1070,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 15
 text = "v0.0.0 > v0.0.0"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE/Panel/MarginContainer/VBoxContainer"]

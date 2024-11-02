@@ -1,6 +1,6 @@
 extends Node
 
-var CURRENT_VER = "v1.1.5.1-beta"
+var CURRENT_VER = "v1.1.6-beta"
 var USER_SYSTEM = OS.get_name()
 
 var SAVE_DATA = {

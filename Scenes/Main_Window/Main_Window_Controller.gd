@@ -38,10 +38,18 @@ var DATA_FILE_TEMPLATE = {
 var RENAME_QUEUE = []
 func _ready():
 	var EXE_PATH = OS.get_executable_path()
-	var FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).exe")[0]
-	var NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.exe"
-	var NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMH_BACKDATED.exe"
-	
+	var FOLDER_PATH = ""
+	var NEW_EXE_PATH = ""
+	var NEW_OLD_PATH = ""
+	if(Global.USER_SYSTEM == "Windows"):
+		FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).exe")[0]
+		NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.exe"
+		NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMHBACKDATED.exe"
+	if(Global.USER_SYSTEM == "Linux"):
+		FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).x86_64")[0]
+		NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.x86_64"
+		NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMHBACKDATED.x86_64"
+	print(NEW_OLD_PATH)
 	if(FileAccess.file_exists(NEW_OLD_PATH)):
 		DirAccess.remove_absolute(NEW_OLD_PATH)
 	
@@ -90,11 +98,17 @@ func _ready():
 		var DOWNLOAD_ADRESS = ""
 		var PATH = ""
 		if(Global.USER_SYSTEM == "Windows"):
+			FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).exe")[0]
+			NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.exe"
+			NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMH_BACKDATED.exe"
 			DOWNLOAD_ADRESS = "https://github.com/AaaaaaICO/DUMH-Mod-Manager/releases/download/"+ RELEASE_VER +"/DUMH.Mod.Helper.exe"
 			PATH = "DUMH.Mod.Helper.exe"
 		if(Global.USER_SYSTEM == "Linux"):
 			DOWNLOAD_ADRESS = "https://github.com/AaaaaaICO/DUMH-Mod-Manager/releases/download/"+ RELEASE_VER +"/DUMH.Mod.Helper.x86_64"
 			PATH = "DUMH.Mod.Helper.x86_64"
+			FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).x86_64")[0]
+			NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.x86_64"
+			NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMH_BACKDATED.x86_64"
 		%LBL_UPDATE_VER.text = Global.CURRENT_VER + " -> " + RELEASE_VER
 		var CONFIRMED_DOWNLOAD_INSTRUCTIONS_RESULTS = await CONFIRMED_DOWNLOAD_INSTRUCTIONS
 		if(CONFIRMED_DOWNLOAD_INSTRUCTIONS_RESULTS):
@@ -107,7 +121,7 @@ func _ready():
 				print("Manipulating exe names")
 				DirAccess.rename_absolute(EXE_PATH, NEW_OLD_PATH)
 				DirAccess.rename_absolute(NEW_EXE_PATH, EXE_PATH)
-				#DirAccess.remove_absolute(NEW_OLD_PATH)
+				DirAccess.remove_absolute(NEW_OLD_PATH)
 				get_tree().quit()
 			else:
 				print("DOWNLOAD FAILED!!!")
