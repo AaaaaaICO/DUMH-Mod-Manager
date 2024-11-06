@@ -8,7 +8,6 @@ extends Panel
 
 var SETTINGS
 
-@onready var MODS_ITEM_TAG_PREFAB ="res://Scenes/PREFABS/Mods_Item_Tag_Prefab.tscn"
 
 @onready var LBL_NAME = get_node("LBL_NAME")
 @onready var LBL_PINNED = get_node("Pinned_Icon")
@@ -34,9 +33,10 @@ var AONVC = false
 @onready var SETTINGS_NEW_TAGS_VBOX_WINDOW = get_node("AD_ChangeTags/MarginContainer/ScrollContainer/VBoxContainer")
 @onready var SETTINGS_NEW_CHARA_WINDOW = get_node("AD_ChangeChara")
 @onready var SETTINGS_NEW_CHARA_VBOX_WINDOW = get_node("AD_ChangeChara/MarginContainer/ScrollContainer/VBoxContainer")
-@onready var SETTINGS_CHECKBOX_PREFAB = "res://Scenes/PREFABS/Simple_Checkbox.tscn"
-
 @onready var SETTINGS_LBL_INDEX = get_node("Window/Panel/MarginContainer/VBoxContainer/LBL_CurrentIndex")
+
+@onready var SETTINGS_CHECKBOX_PREFAB = "res://Scenes/PREFABS/Simple_Checkbox.tscn"
+@onready var MODS_ITEM_TAG_PREFAB = "res://Scenes/PREFABS/Mod Panel/Mods_Item_Tag_Prefab.tscn"
 
 var OPENING = false
 var HOVERING = false

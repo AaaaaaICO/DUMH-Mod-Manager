@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ehqit23ksq5u"]
 
-[ext_resource type="Script" path="res://Scenes/PREFABS/Mods_Item_Tag_Prefab_Controller.gd" id="1_0sk0f"]
+[ext_resource type="Script" path="res://Scripts/Mod Panel/Mods_Item_Tag_Prefab_Controller.gd" id="1_0sk0f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86wlb"]
 bg_color = Color(1, 1, 1, 1)

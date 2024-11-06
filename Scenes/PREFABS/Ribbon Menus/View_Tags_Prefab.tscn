@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://j1hb55233h0g"]
 
-[ext_resource type="Script" path="res://Scripts/View_Tags_Prefab.gd" id="1_blppq"]
+[ext_resource type="Script" path="res://Scripts/Ribbon Menus/View_Tags_Prefab.gd" id="1_blppq"]
 [ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="1_oidla"]
 [ext_resource type="StyleBox" uid="uid://cqbj7m0rmflqx" path="res://Styleboxs/Button/SimpleWhite_Button_Pressed.tres" id="2_itifm"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://2wcm4figlxq"]
 
 [ext_resource type="StyleBox" uid="uid://du8causkg2mk2" path="res://Styleboxs/Button/SimpleWhite_Button_Hover.tres" id="1_bvwo7"]
-[ext_resource type="Script" path="res://Scripts/SAVE_SLOT_MAKER.gd" id="1_egg6k"]
+[ext_resource type="Script" path="res://Scripts/Ribbon Menus/Save Slots/SAVE_SLOT_MAKER.gd" id="1_egg6k"]
 [ext_resource type="StyleBox" uid="uid://cqbj7m0rmflqx" path="res://Styleboxs/Button/SimpleWhite_Button_Pressed.tres" id="2_g3p2j"]
 [ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="3_5170a"]
 

@@ -20,7 +20,7 @@ config/icon="res://EXTRAS/IMAGES/DUMHLOGO.png"
 
 [autoload]
 
-Global="*res://Scripts/Global.gd"
+Global="*res://Scripts/Global/Global.gd"
 
 [display]
 

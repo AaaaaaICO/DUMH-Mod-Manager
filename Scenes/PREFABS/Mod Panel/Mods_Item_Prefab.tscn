@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://cxi65hngr51x7"]
 
-[ext_resource type="Script" path="res://Scenes/PREFABS/Mods_Item_Prefab_Controller.gd" id="1_l2keg"]
+[ext_resource type="Script" path="res://Scripts/Mod Panel/Mods_Item_Prefab_Controller.gd" id="1_l2keg"]
 [ext_resource type="Texture2D" uid="uid://chk70i5sjbbh1" path="res://Sprites/image.png" id="2_iibw8"]
 [ext_resource type="StyleBox" uid="uid://b0ha7ovj1t4wq" path="res://Styleboxs/Button/SimpleBlack_Button_Pressed.tres" id="2_vb4ok"]
 [ext_resource type="StyleBox" uid="uid://d3jw442hvmgiy" path="res://Styleboxs/Button/SimpleBlack_Button_Hover.tres" id="3_pav2c"]

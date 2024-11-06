@@ -40,7 +40,8 @@ func BTN_APPLY_ALL_PRESSED() -> void:
 func BTN_PRESET_PRESSED() -> void:
 	var NAME = ""
 	var LIST = Global.MODS_APPLYED
-	var INPUTBLOCKER = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("__INPUTBLOCKER__")
+	LIST.append_array(Global.MODS_TO_APPLY)
+	var INPUTBLOCKER = get_tree().get_root().get_node("MASTER").get_node("__INPUTBLOCKER__")
 	var AD_PROFILE_NAME = INPUTBLOCKER.get_node("AD_PROFILE_NAME")
 	AD_PROFILE_NAME.visible = true
 	INPUTBLOCKER.visible = true

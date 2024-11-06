@@ -5,16 +5,15 @@ signal CONFIRMED_DOWNLOAD_INSTRUCTIONS(ACCEPTED)
 
 signal WAS_DOWNLOAD_SUCCESSFUL(SUCCESSFUL)
 
-@onready var MODS_ITEM_PREFAB = "res://Scenes/PREFABS/Mods_Item_Prefab.tscn"
-@onready var MODS_ITEM_CONTROLLER_PREFAB = "res://Scenes/PREFABS/MODS_TOP_CONTROLLER.tscn"
-@onready var PRESET_ITEM = "res://Scenes/PREFABS/Preset_Prefab.tscn"
-@onready var VIEW_TAGS_PREFAB = "res://Scenes/PREFABS/View_Tags_Prefab.tscn"
-@onready var CREATE_TAGS_PREFAB = "res://Scenes/PREFABS/Create_Tags_Prefab.tscn"
-@onready var VIEW_CHARA_PREFAB = "res://Scenes/PREFABS/View_Chara_Prefab.tscn"
-@onready var CREATE_CHARA_PREFAB = "res://Scenes/PREFABS/Create_Chara_Prefab.tscn"
+@onready var MODS_ITEM_PREFAB = "res://Scenes/PREFABS/Mod Panel/Mods_Item_Prefab.tscn"
+@onready var MODS_ITEM_CONTROLLER_PREFAB = "res://Scenes/PREFABS/Mod Panel/MODS_TOP_CONTROLLER.tscn"
+@onready var PRESET_ITEM = "res://Scenes/PREFABS/Presets/Preset_Prefab.tscn"
+@onready var VIEW_TAGS_PREFAB = "res://Scenes/PREFABS/Ribbon Menus/View_Tags_Prefab.tscn"
+@onready var CREATE_TAGS_PREFAB = "res://Scenes/PREFABS/Ribbon Menus/Create_Tags_Prefab.tscn"
+@onready var VIEW_CHARA_PREFAB = "res://Scenes/PREFABS/Ribbon Menus/View_Chara_Prefab.tscn"
+@onready var CREATE_CHARA_PREFAB = "res://Scenes/PREFABS/Ribbon Menus/Create_Chara_Prefab.tscn"
 @onready var CUSTOM_CHECKBOX = "res://Scenes/PREFABS/Simple_Checkbox.tscn"
-
-@onready var SAVE_SLOTS_MAKER_PREFAB = "res://Scenes/PREFABS/SAVE_SLOT_MAKER.tscn"
+@onready var SAVE_SLOTS_MAKER_PREFAB = "res://Scenes/PREFABS/Ribbon Menus/Save Slots/SAVE_SLOT_MAKER.tscn"
 
 var INPUTBLOCKER_OPEN_TOGGLE = false
 

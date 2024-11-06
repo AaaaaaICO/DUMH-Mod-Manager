@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var SAVE_SLOT_PICKER = "res://Scenes/PREFABS/SAVE_SLOT_PICKER.tscn"
+@onready var SAVE_SLOT_PICKER = "res://Scenes/PREFABS/Ribbon Menus/Save Slots/SAVE_SLOT_PICKER.tscn"
 
 var SAVE_SLOT_TEMPLATE = {
 	"SLOT_NAME": "",

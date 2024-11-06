@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Main_Window/Main_Window_Controller.gd" id="1_w4vn0"]
 [ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="2_2qig7"]
-[ext_resource type="Script" path="res://Scripts/Scale_On_Hover.gd" id="3_s38qy"]
+[ext_resource type="Script" path="res://Scripts/Global/Scale_On_Hover.gd" id="3_s38qy"]
 [ext_resource type="StyleBox" uid="uid://cqbj7m0rmflqx" path="res://Styleboxs/Button/SimpleWhite_Button_Pressed.tres" id="3_xmw14"]
 [ext_resource type="Texture2D" uid="uid://cxd82oxn5uolw" path="res://Sprites/Warning.png" id="5_gbhlx"]
 [ext_resource type="StyleBox" uid="uid://bm1cn6c3xs130" path="res://Styleboxs/Button/SimpleBlack_Button.tres" id="6_due6c"]
@@ -330,8 +330,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -15.5
-offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 
