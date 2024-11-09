@@ -112,17 +112,30 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_2c7ca")
 theme_override_styles/hover = ExtResource("1_en0pt")
 theme_override_styles/pressed = ExtResource("2_iahfq")
 theme_override_styles/normal = ExtResource("3_nlwog")
-text = "Mutliple select"
+text = "Multiple select"
 
-[node name="LBL_NUM" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LBL_NUM" type="Label" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Number of mods : 00"
+horizontal_alignment = 1
+
+[node name="LBL_NUMDISPLAYED" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Number of mods displayed : 00"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_APPLY" to="." method="BTN_APPLY_ALL_PRESSED"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_UNAPPLY" to="." method="BTN_UNAPPLY_PRESSED"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_PRESET" to="." method="BTN_PRESET_PRESSED"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_REFRESH" to="." method="BTN_REFRESH_PRESSED"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/BTN_MULTISELECT" to="." method="BTN_APPLY_ALL_PRESSED"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/BTN_MULTISELECT" to="." method="BTN_MULTI_SELECT_PRESSED"]

@@ -1,9 +1,13 @@
 extends Panel
 
+@onready var MASTER = get_tree().get_root().get_node("MASTER")
 func _ready() -> void:
 	var LIST = await Global.LIST_MODS_BY_INDEX()
 	%LBL_NUM.text = "Number of mods : " + str(len(LIST))
-
+	
+func _process(delta: float) -> void:
+	await get_tree().create_timer(0.5).timeout
+	%LBL_NUMDISPLAYED.text = "Number of mods displayed: " + str(MASTER.get_node("%VBC_MODS_LIST").get_child_count()-1)
 
 func BTN_UNAPPLY_PRESSED() -> void:
 	var LIST = await Global.LIST_MODS_BY_INDEX()
@@ -68,3 +72,7 @@ func BTN_PRESET_PRESSED() -> void:
 
 func BTN_REFRESH_PRESSED() -> void:
 	Global.REFRESH_WINDOW = true
+
+
+func BTN_MULTI_SELECT_PRESSED() -> void:
+	pass # Replace with function body.
