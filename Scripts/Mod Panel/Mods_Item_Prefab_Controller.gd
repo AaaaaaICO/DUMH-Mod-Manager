@@ -20,6 +20,7 @@ var SETTINGS
 var AOVC = false
 var AVC = false
 var AONVC = false
+
 @onready var APPLIED_OFF = get_node("MASK/PNL_SIDE_COLOR_APPLIED_OFF")
 @onready var APPLIED_OFF_AP = get_node("MASK/AP_OFF")
 @onready var APPLIED = get_node("MASK/PNL_SIDE_COLOR_APPLIED")
@@ -45,15 +46,21 @@ var HOVERING_CLOSE = false
 var MOD_APPLIED = false
 var TO_APPLY = false
 
+var MULTI_SELECTED = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	if(Global.MODS_APPLYED.has(SETTINGS["ORIGINAL_NAME"])):
-		MOD_APPLIED = true
-	else: MOD_APPLIED = false
-	TO_APPLY = MOD_APPLIED
-	await MOD_HELPER()
-	
+	if(Global.MULTI_SELECT_ACTIVE == true):
+		pass
+	else:
+		if(Global.MODS_APPLYED.has(SETTINGS["ORIGINAL_NAME"])):
+			MOD_APPLIED = true
+		else: MOD_APPLIED = false
+		TO_APPLY = MOD_APPLIED
+		await MOD_HELPER()
+		
+		
 	SETTINGS_LBL_INDEX.set_text("Index = " + str(SETTINGS["INDEX"]))
 	if(SETTINGS["CHARACTER"]):
 		var CHARA_EXISTS = Global.CHECK_CHARA_EXISTS(SETTINGS["CHARACTER"])
@@ -93,19 +100,22 @@ func _ready() -> void:
 
 
 
-
-
-
 func _process(delta: float) -> void:
-	if(HOVERING == true and Input.is_action_just_pressed("LEFT_CLICK")):
-		TO_APPLY = !TO_APPLY
-		await MOD_HELPER()
-	if(HOVERING == true and Input.is_action_just_pressed("RIGHT_CLICK")):
-		if(!Global.SETTINGS_WINDOW_OPEN):
-			SETTINGS_WINDOW.visible = true
-			Global.SETTINGS_WINDOW_OPEN = true
-	if(HOVERING == false and HOVERING_CLOSE == false):
-		HOVERING_CLOSE = true
+	
+	if(Global.MULTI_SELECT_ACTIVE == true):
+		if(HOVERING == true and Input.is_action_just_pressed("LEFT_CLICK")):
+			MULTI_SELECTED_CHANGED()
+			
+	else:
+		if(HOVERING == true and Input.is_action_just_pressed("LEFT_CLICK")):
+			TO_APPLY = !TO_APPLY
+			await MOD_HELPER()
+		if(HOVERING == true and Input.is_action_just_pressed("RIGHT_CLICK")):
+			if(!Global.SETTINGS_WINDOW_OPEN):
+				SETTINGS_WINDOW.visible = true
+				Global.SETTINGS_WINDOW_OPEN = true
+		if(HOVERING == false and HOVERING_CLOSE == false):
+			HOVERING_CLOSE = true
 
 	
 func MOD_HELPER(): # SO MUCH EFFORT FOR LITTLE OUTCOME
@@ -275,7 +285,6 @@ func APPLIED_OFF_VISIBILITY_CHANGED() -> void:
 			APPLIED_OFF.visible = false
 		AOVC = false
 
-
 func APPLIED_VISIBILITY_CHANGED() -> void:
 	if(AVC):
 		if(APPLIED.visible == true):
@@ -287,7 +296,6 @@ func APPLIED_VISIBILITY_CHANGED() -> void:
 			APPLIED.visible = false
 		AVC = false
 
-
 func APPLIED_ON_VISIBILITY_CHANGED() -> void:
 	if(AONVC):
 		if(APPLIED_ON.visible == true):
@@ -298,3 +306,16 @@ func APPLIED_ON_VISIBILITY_CHANGED() -> void:
 			await APPLIED_ON_AP.animation_finished
 			APPLIED_ON.visible = false
 		AONVC = false
+
+func MULTI_SELECTED_CHANGED() -> void:
+	MULTI_SELECTED = !MULTI_SELECTED
+	if(MULTI_SELECTED):
+		%PNL_SIDE_COLOR_APPLIED_MULTI.visible = true
+		%AP_MULTI.play("IN")
+		Global.MUTLI_SELECTED_MODS.append(SETTINGS["ORIGINAL_NAME"])
+	else:
+		%PNL_SIDE_COLOR_APPLIED_MULTI.visible = true
+		%AP_MULTI.play("OUT")
+		await %AP_MULTI.animation_finished
+		%PNL_SIDE_COLOR_APPLIED_MULTI.visible = false
+		Global.MUTLI_SELECTED_MODS.erase(SETTINGS["ORIGINAL_NAME"])

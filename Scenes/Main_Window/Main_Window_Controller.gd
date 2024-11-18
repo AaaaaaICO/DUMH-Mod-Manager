@@ -694,7 +694,7 @@ func FIND(PATH):
 	for SUBDIR in SUBDIRS:
 		MODSLIST_PATHS_DEEPER.append(PATH + "/" + SUBDIR)
 	MODSLIST_PATHS_IMPORT.append(PATH)
-func IMPORT():
+func IMPORT(): 
 	for ITEM in MODSLIST_PATHS_IMPORT:
 		var FILES =  DirAccess.get_files_at(ITEM)
 		for FILE in FILES:

@@ -31,8 +31,9 @@ var POPULATE_TAGS = []
 var POPULATE_CHARAS = []
 var REFRESH_WINDOW = false
 var CAN_REFRESH = false
+var MULTI_SELECT_ACTIVE = false
 
-
+var MUTLI_SELECTED_MODS = []
 
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("REFRESH") and CAN_REFRESH):

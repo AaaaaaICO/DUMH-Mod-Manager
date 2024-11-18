@@ -47,7 +47,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MASK/PNL_SIDE_COLOR_APPLIED_OFF:position")
+tracks/0/path = NodePath("MASK/PNL_SIDE_COLOR_APPLIED_MULTI:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,7 +63,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MASK/PNL_SIDE_COLOR_APPLIED_OFF:position")
+tracks/0/path = NodePath("MASK/PNL_SIDE_COLOR_APPLIED_MULTI:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -75,18 +75,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_d8etj"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MASK/PNL_SIDE_COLOR_APPLIED_OFF:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(158, -80)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_otcf0"]
 _data = {
@@ -96,7 +84,7 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5baou"]
-bg_color = Color(1, 0.361, 0.361, 0.75)
+bg_color = Color(0.861828, 0.515991, 0.0534798, 0.75)
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 250
@@ -658,6 +646,27 @@ offset_bottom = 80.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yr38v")
 
+[node name="AP_MULTI" type="AnimationPlayer" parent="MASK"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_otcf0")
+}
+
+[node name="PNL_SIDE_COLOR_APPLIED_MULTI" type="Panel" parent="MASK"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 600.0
+offset_top = -80.0
+offset_right = 244.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5baou")
+
 [node name="ANIM" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_68g2v")
@@ -889,6 +898,7 @@ theme_override_constants/separation = 15
 [connection signal="visibility_changed" from="MASK/PNL_SIDE_COLOR_APPLIED_OFF" to="." method="APPLIED_OFF_VISIBILITY_CHANGED"]
 [connection signal="visibility_changed" from="MASK/PNL_SIDE_COLOR_APPLIED" to="." method="APPLIED_VISIBILITY_CHANGED"]
 [connection signal="visibility_changed" from="MASK/PNL_SIDE_COLOR_APPLIED_ON" to="." method="APPLIED_ON_VISIBILITY_CHANGED"]
+[connection signal="visibility_changed" from="MASK/PNL_SIDE_COLOR_APPLIED_MULTI" to="." method="APPLIED_OFF_VISIBILITY_CHANGED"]
 [connection signal="close_requested" from="Window" to="." method="ON_SETTINGS_WINDOW_CLOSE"]
 [connection signal="pressed" from="Window/Panel/MarginContainer/VBoxContainer/BTN_ChangeName" to="." method="BTN_CHANGE_NAME_PRESSED"]
 [connection signal="pressed" from="Window/Panel/MarginContainer/VBoxContainer/BTN_ChangeTags" to="." method="BTN_CHANGE_TAGS_PRESSED"]

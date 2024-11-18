@@ -1,7 +1,14 @@
 extends Panel
 
+signal MULTI_SELECT_CONFIRMED()
+
 @onready var MASTER = get_tree().get_root().get_node("MASTER")
 func _ready() -> void:
+	if(Global.MULTI_SELECT_ACTIVE):
+		%BTN_MULTISELECT.text = "Confirm selection"
+	if(!Global.MULTI_SELECT_ACTIVE):
+		%BTN_MULTISELECT.text = "Multiple select"
+		
 	var LIST = await Global.LIST_MODS_BY_INDEX()
 	%LBL_NUM.text = "Number of mods : " + str(len(LIST))
 	
@@ -75,4 +82,26 @@ func BTN_REFRESH_PRESSED() -> void:
 
 
 func BTN_MULTI_SELECT_PRESSED() -> void:
+	Global.MULTI_SELECT_ACTIVE = !Global.MULTI_SELECT_ACTIVE
+	if(Global.MULTI_SELECT_ACTIVE):
+		%BTN_MULTISELECT.text = "Confirm selection"
+	if(!Global.MULTI_SELECT_ACTIVE):
+		%BTN_MULTISELECT.text = "Multiple select"
+		%VBoxContainer_MULTI_SELECT.show()
+		%VBoxContainer.show()
+		
+		
+		
+	Global.REFRESH_WINDOW = true
+
+
+func _on_btn_tags_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_btn_characters_pressed() -> void:
+	%AD_ChangeChara.show()
+	
+
+func _on_btn_multiselect_pressed() -> void:
+	MULTI_SELECT_CONFIRMED.emit()

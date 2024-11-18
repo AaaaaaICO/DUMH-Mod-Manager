@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjmrd4vjlw8n"]
+[gd_scene load_steps=10 format=3 uid="uid://cjmrd4vjlw8n"]
 
 [ext_resource type="StyleBox" uid="uid://d3jw442hvmgiy" path="res://Styleboxs/Button/SimpleBlack_Button_Hover.tres" id="1_en0pt"]
 [ext_resource type="Script" path="res://Scripts/Mod Panel/Mods_Top_Controller.gd" id="1_yvjjh"]
 [ext_resource type="StyleBox" uid="uid://b0ha7ovj1t4wq" path="res://Styleboxs/Button/SimpleBlack_Button_Pressed.tres" id="2_iahfq"]
 [ext_resource type="StyleBox" uid="uid://bm1cn6c3xs130" path="res://Styleboxs/Button/SimpleBlack_Button.tres" id="3_nlwog"]
+[ext_resource type="StyleBox" uid="uid://fik51dlbgc7j" path="res://Styleboxs/Black_Red_Panel.tres" id="5_1ajbb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ti0du"]
 bg_color = Color(1, 1, 1, 1)
@@ -28,6 +29,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ti0du")
 script = ExtResource("1_yvjjh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,6 +108,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="BTN_MULTISELECT" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
@@ -134,8 +138,159 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Number of mods displayed : 00"
 horizontal_alignment = 1
 
+[node name="VBoxContainer_MULTI_SELECT" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LBL_Title" type="Label" parent="VBoxContainer_MULTI_SELECT"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Mods controller"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer_MULTI_SELECT"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer_MULTI_SELECT/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BTN_TAGS" type="Button" parent="VBoxContainer_MULTI_SELECT/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2c7ca")
+theme_override_styles/hover = ExtResource("1_en0pt")
+theme_override_styles/pressed = ExtResource("2_iahfq")
+theme_override_styles/normal = ExtResource("3_nlwog")
+text = "Tags"
+
+[node name="BTN_CHARACTERS" type="Button" parent="VBoxContainer_MULTI_SELECT/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1ifnn")
+theme_override_styles/hover = ExtResource("1_en0pt")
+theme_override_styles/pressed = ExtResource("2_iahfq")
+theme_override_styles/normal = ExtResource("3_nlwog")
+text = "Characters"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer_MULTI_SELECT"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer_MULTI_SELECT/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BTN_MULTISELECT" type="Button" parent="VBoxContainer_MULTI_SELECT/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2c7ca")
+theme_override_styles/hover = ExtResource("1_en0pt")
+theme_override_styles/pressed = ExtResource("2_iahfq")
+theme_override_styles/normal = ExtResource("3_nlwog")
+text = "End selection"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer_MULTI_SELECT"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LBL_NUM" type="Label" parent="VBoxContainer_MULTI_SELECT/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Number of mods : 00"
+horizontal_alignment = 1
+
+[node name="LBL_NUMDISPLAYED" type="Label" parent="VBoxContainer_MULTI_SELECT/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Number of mods displayed : 00"
+horizontal_alignment = 1
+
+[node name="AD_ChangeChara" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(414, 414)
+borderless = true
+always_on_top = true
+theme_override_styles/panel = ExtResource("5_1ajbb")
+
+[node name="MarginContainer" type="MarginContainer" parent="AD_ChangeChara"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 409.0
+offset_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AD_ChangeChara/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AD_ChangeChara/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="AD_ChangeTags" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(414, 414)
+borderless = true
+always_on_top = true
+theme_override_styles/panel = ExtResource("5_1ajbb")
+
+[node name="MarginContainer" type="MarginContainer" parent="AD_ChangeTags"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 409.0
+offset_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AD_ChangeTags/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AD_ChangeTags/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_APPLY" to="." method="BTN_APPLY_ALL_PRESSED"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_UNAPPLY" to="." method="BTN_UNAPPLY_PRESSED"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_PRESET" to="." method="BTN_PRESET_PRESSED"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BTN_REFRESH" to="." method="BTN_REFRESH_PRESSED"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/BTN_MULTISELECT" to="." method="BTN_MULTI_SELECT_PRESSED"]
+[connection signal="pressed" from="VBoxContainer_MULTI_SELECT/MarginContainer/HBoxContainer/BTN_TAGS" to="." method="_on_btn_tags_pressed"]
+[connection signal="pressed" from="VBoxContainer_MULTI_SELECT/MarginContainer/HBoxContainer/BTN_CHARACTERS" to="." method="_on_btn_characters_pressed"]
+[connection signal="pressed" from="VBoxContainer_MULTI_SELECT/MarginContainer2/HBoxContainer/BTN_MULTISELECT" to="." method="_on_btn_multiselect_pressed"]
