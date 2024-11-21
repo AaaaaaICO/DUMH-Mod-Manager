@@ -2,6 +2,8 @@ extends Panel
 
 signal MULTI_SELECT_CONFIRMED()
 
+@onready var SETTINGS_CHECKBOX_PREFAB = "res://Scenes/PREFABS/Simple_Checkbox.tscn"
+
 @onready var MASTER = get_tree().get_root().get_node("MASTER")
 func _ready() -> void:
 	if(Global.MULTI_SELECT_ACTIVE):
@@ -88,20 +90,51 @@ func BTN_MULTI_SELECT_PRESSED() -> void:
 	if(!Global.MULTI_SELECT_ACTIVE):
 		%BTN_MULTISELECT.text = "Multiple select"
 		%VBoxContainer_MULTI_SELECT.show()
-		%VBoxContainer.show()
+		%VBoxContainer.hide()
 		
-		
-		
+	await MULTI_SELECT_CONFIRMED
+	Global.MUTLI_SELECTED_MODS = []
+	Global.POPULATE = true
+	Global.SETTINGS_WINDOW_OPEN = false
 	Global.REFRESH_WINDOW = true
 
 
 func _on_btn_tags_pressed() -> void:
 	pass # Replace with function body.
 
-
 func _on_btn_characters_pressed() -> void:
 	%AD_ChangeChara.show()
-	
-
+	var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/CONFIG.json", FileAccess.READ);
+	var JSON_STRING = FILE_DATA.get_as_text()
+	var FILE_AS_DICT = JSON.parse_string(JSON_STRING)
+	var CHARAS = FILE_AS_DICT["CHARACTERS"]
+	for N in %SETTINGS_NEW_CHARA_VB.get_children():
+		%SETTINGS_NEW_CHARA_VB.remove_child(N)
+		N.queue_free()
+	print(CHARAS)
+	for CHARA in CHARAS:
+		var ITEM = load(SETTINGS_CHECKBOX_PREFAB).instantiate()
+		ITEM.set_text(CHARA)
+		%SETTINGS_NEW_CHARA_VB.add_child(ITEM)
+		
+		
 func _on_btn_multiselect_pressed() -> void:
 	MULTI_SELECT_CONFIRMED.emit()
+
+
+func _on_ad_change_chara_confirmed() -> void:
+	for x in Global.MUTLI_SELECTED_MODS: # Add multithreading?
+		var LIST_OF_CHARACTERS = []
+		for CB in %SETTINGS_NEW_CHARA_VB.get_children():
+			if(CB.is_pressed()):
+				LIST_OF_CHARACTERS.append(CB.get_text())
+		var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + x + "/" + "DATA.json", FileAccess.READ);
+		var JSON_STRING = FILE_DATA.get_as_text()
+		var FILE_AS_DICT = JSON.parse_string(JSON_STRING)
+		if(LIST_OF_CHARACTERS):
+			FILE_AS_DICT["CHARACTER"] = LIST_OF_CHARACTERS[0]
+		else:
+			FILE_AS_DICT["CHARACTER"] = ""
+		var Data_FILE_END = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE_AS_DICT["ORIGINAL_NAME"] + "/" + "DATA.json",  FileAccess.WRITE)
+		var JSON_STRING_END = JSON.stringify(FILE_AS_DICT)
+		Data_FILE_END.store_line(JSON_STRING_END)
