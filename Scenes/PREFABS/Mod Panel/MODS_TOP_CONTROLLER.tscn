@@ -267,7 +267,8 @@ theme_override_constants/margin_bottom = 15
 [node name="ScrollContainer" type="ScrollContainer" parent="AD_ChangeTags/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AD_ChangeTags/MarginContainer/ScrollContainer"]
+[node name="SETTINGS_NEW_TAGS_VB" type="VBoxContainer" parent="AD_ChangeTags/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -282,3 +283,4 @@ theme_override_constants/separation = 15
 [connection signal="pressed" from="VBoxContainer_MULTI_SELECT/MarginContainer/HBoxContainer/BTN_CHARACTERS" to="." method="_on_btn_characters_pressed"]
 [connection signal="pressed" from="VBoxContainer_MULTI_SELECT/MarginContainer2/HBoxContainer/BTN_MULTISELECT" to="." method="_on_btn_multiselect_pressed"]
 [connection signal="confirmed" from="AD_ChangeChara" to="." method="_on_ad_change_chara_confirmed"]
+[connection signal="confirmed" from="AD_ChangeTags" to="." method="_on_ad_change_tags_confirmed"]
