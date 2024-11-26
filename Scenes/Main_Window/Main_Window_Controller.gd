@@ -35,6 +35,7 @@ var DATA_FILE_TEMPLATE = {
 }
 # Called when the node enters the scene tree for the first time.
 var RENAME_QUEUE = []
+var INTERNET_CONNECTION = false
 func _ready():
 	var EXE_PATH = OS.get_executable_path()
 	var FOLDER_PATH = ""
@@ -48,7 +49,6 @@ func _ready():
 		FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).x86_64")[0]
 		NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.x86_64"
 		NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMHBACKDATED.x86_64"
-	print(NEW_OLD_PATH)
 	if(FileAccess.file_exists(NEW_OLD_PATH)):
 		DirAccess.remove_absolute(NEW_OLD_PATH)
 	
@@ -89,41 +89,42 @@ func _ready():
 	%HTTP_REQUEST.request_completed.connect(GET_LATEST_RELEASE.bind())
 	$HTTP_REQUEST.request("https://github.com/AaaaaaICO/DUMH-Mod-Manager/tags")
 	var LATEST_RELEASE_LINK = await LATEST_RELEASE_FOUND
-	var LINK_SPLITS = LATEST_RELEASE_LINK.split("/")
-	var RELEASE_VER = LINK_SPLITS[5]
-	if(RELEASE_VER != Global.CURRENT_VER):
-		%__INPUTBLOCKER__.show()
-		%CC_UPDATE_AVAILABLE.show()
-		var DOWNLOAD_ADRESS = ""
-		var PATH = ""
-		if(Global.USER_SYSTEM == "Windows"):
-			FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).exe")[0]
-			NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.exe"
-			NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMH_BACKDATED.exe"
-			DOWNLOAD_ADRESS = "https://github.com/AaaaaaICO/DUMH-Mod-Manager/releases/download/"+ RELEASE_VER +"/DUMH.Mod.Helper.exe"
-			PATH = "DUMH.Mod.Helper.exe"
-		if(Global.USER_SYSTEM == "Linux"):
-			DOWNLOAD_ADRESS = "https://github.com/AaaaaaICO/DUMH-Mod-Manager/releases/download/"+ RELEASE_VER +"/DUMH.Mod.Helper.x86_64"
-			PATH = "DUMH.Mod.Helper.x86_64"
-			FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).x86_64")[0]
-			NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.x86_64"
-			NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMH_BACKDATED.x86_64"
-		%LBL_UPDATE_VER.text = Global.CURRENT_VER + " -> " + RELEASE_VER
-		var CONFIRMED_DOWNLOAD_INSTRUCTIONS_RESULTS = await CONFIRMED_DOWNLOAD_INSTRUCTIONS
-		if(CONFIRMED_DOWNLOAD_INSTRUCTIONS_RESULTS):
-			%HTTP_DOWNLOADER.request_completed.connect(DOWNLOAD.bind())
-			%HTTP_DOWNLOADER.set_download_file(PATH)
-			var REQUEST = %HTTP_DOWNLOADER.request(DOWNLOAD_ADRESS)
-			var SUCCESSFUL = await WAS_DOWNLOAD_SUCCESSFUL
-			if(SUCCESSFUL):
-				print("DOWNLOAD SUCCESSFUL!!!")
-				print("Manipulating exe names")
-				DirAccess.rename_absolute(EXE_PATH, NEW_OLD_PATH)
-				DirAccess.rename_absolute(NEW_EXE_PATH, EXE_PATH)
-				DirAccess.remove_absolute(NEW_OLD_PATH)
-				get_tree().quit()
-			else:
-				print("DOWNLOAD FAILED!!!")
+	if(LATEST_RELEASE_LINK != "NOCONNECTION"):
+		var LINK_SPLITS = LATEST_RELEASE_LINK.split("/")
+		var RELEASE_VER = LINK_SPLITS[5]
+		if(RELEASE_VER != Global.CURRENT_VER):
+			%__INPUTBLOCKER__.show()
+			%CC_UPDATE_AVAILABLE.show()
+			var DOWNLOAD_ADRESS = ""
+			var PATH = ""
+			if(Global.USER_SYSTEM == "Windows"):
+				FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).exe")[0]
+				NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.exe"
+				NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMH_BACKDATED.exe"
+				DOWNLOAD_ADRESS = "https://github.com/AaaaaaICO/DUMH-Mod-Manager/releases/download/"+ RELEASE_VER +"/DUMH.Mod.Helper.exe"
+				PATH = "DUMH.Mod.Helper.exe"
+			if(Global.USER_SYSTEM == "Linux"):
+				DOWNLOAD_ADRESS = "https://github.com/AaaaaaICO/DUMH-Mod-Manager/releases/download/"+ RELEASE_VER +"/DUMH.Mod.Helper.x86_64"
+				PATH = "DUMH.Mod.Helper.x86_64"
+				FOLDER_PATH = EXE_PATH.split("/DUMH (Mod Helper).x86_64")[0]
+				NEW_EXE_PATH = FOLDER_PATH + "/DUMH.Mod.Helper.x86_64"
+				NEW_OLD_PATH = FOLDER_PATH + "/DELETE_DUMH_BACKDATED.x86_64"
+			%LBL_UPDATE_VER.text = Global.CURRENT_VER + " -> " + RELEASE_VER
+			var CONFIRMED_DOWNLOAD_INSTRUCTIONS_RESULTS = await CONFIRMED_DOWNLOAD_INSTRUCTIONS
+			if(CONFIRMED_DOWNLOAD_INSTRUCTIONS_RESULTS):
+				%HTTP_DOWNLOADER.request_completed.connect(DOWNLOAD.bind())
+				%HTTP_DOWNLOADER.set_download_file(PATH)
+				var REQUEST = %HTTP_DOWNLOADER.request(DOWNLOAD_ADRESS)
+				var SUCCESSFUL = await WAS_DOWNLOAD_SUCCESSFUL
+				if(SUCCESSFUL):
+					print("DOWNLOAD SUCCESSFUL!!!")
+					print("Manipulating exe names")
+					DirAccess.rename_absolute(EXE_PATH, NEW_OLD_PATH)
+					DirAccess.rename_absolute(NEW_EXE_PATH, EXE_PATH)
+					DirAccess.remove_absolute(NEW_OLD_PATH)
+					get_tree().quit()
+				else:
+					print("DOWNLOAD FAILED!!!")
 
 
 	if(!Global.SAVE_DATA["SAVE_SLOTS"].is_empty()):
@@ -136,14 +137,15 @@ func _ready():
 	Start()
 
 func GET_LATEST_RELEASE(_result, _response_code, _headers, _body):
-	var parser: XMLParser = XMLParser.new()
-	parser.open_buffer(_body)
-	while parser.read() != ERR_FILE_EOF:
-		if(parser.has_attribute("href")):
-			if(parser.get_attribute_count() >= 2):
-				if(parser.get_attribute_value(1).contains("/AaaaaaICO/DUMH-Mod-Manager/releases/tag")):
-					LATEST_RELEASE_FOUND.emit(parser.get_attribute_value(1))
-		
+	if(str(_response_code) != "0"):
+		var parser: XMLParser = XMLParser.new()
+		parser.open_buffer(_body)
+		while parser.read() != ERR_FILE_EOF:
+			if(parser.has_attribute("href")):
+				if(parser.get_attribute_count() >= 2):
+					if(parser.get_attribute_value(1).contains("/AaaaaaICO/DUMH-Mod-Manager/releases/tag")):
+						LATEST_RELEASE_FOUND.emit(parser.get_attribute_value(1))
+	LATEST_RELEASE_FOUND.emit("NOCONNECTION")
 		
 func DOWNLOAD(result, _response_code, _headers, _body):
 	if result != OK:

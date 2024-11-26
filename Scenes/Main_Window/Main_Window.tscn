@@ -721,6 +721,7 @@ vertical_alignment = 1
 
 [node name="__INPUTBLOCKER__" type="ColorRect" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

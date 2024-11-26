@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cxi65hngr51x7"]
+[gd_scene load_steps=36 format=3 uid="uid://cxi65hngr51x7"]
 
 [ext_resource type="Script" path="res://Scripts/Mod Panel/Mods_Item_Prefab_Controller.gd" id="1_l2keg"]
 [ext_resource type="Texture2D" uid="uid://chk70i5sjbbh1" path="res://Sprites/image.png" id="2_iibw8"]
@@ -83,8 +83,8 @@ _data = {
 "RESET": SubResource("Animation_d8etj")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5baou"]
-bg_color = Color(0.861828, 0.515991, 0.0534798, 0.75)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0rr5u"]
+bg_color = Color(0.82956, 0.291916, 0.189843, 0.75)
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 250
@@ -209,6 +209,13 @@ _data = {
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yr38v"]
 bg_color = Color(0.361, 1, 0.361, 0.75)
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 250
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5baou"]
+bg_color = Color(0.861828, 0.515991, 0.0534798, 0.75)
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 250
@@ -610,7 +617,7 @@ offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5baou")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0rr5u")
 
 [node name="AP_NULL" type="AnimationPlayer" parent="MASK"]
 libraries = {
@@ -655,12 +662,13 @@ libraries = {
 
 [node name="PNL_SIDE_COLOR_APPLIED_MULTI" type="Panel" parent="MASK"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 600.0
+offset_left = 158.0
 offset_top = -80.0
-offset_right = 244.0
+offset_right = -198.0
 offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
