@@ -32,6 +32,7 @@ var DATA_FILE_TEMPLATE = {
 	"CHARACTER": "",
 	"INDEX": 0,
 	"PINNED": false,
+	"JPEG_LOC": ""
 }
 # Called when the node enters the scene tree for the first time.
 var RENAME_QUEUE = []
@@ -78,6 +79,7 @@ func _ready():
 	%BTN_DUMP.pressed.connect(BTN_SETTINGS_DUMP_PRESSED.bind())
 	%BTN_DUMP_UNDEST.pressed.connect(BTN_SETTINGS_CLONE_DUMP_PRESSED.bind())
 	%BTN_HARDRESET.pressed.connect(BTN_SETTINGS_HARD_RESET_PRESSED.bind())
+	%BTN_SHOWIMAGES.pressed.connect(BTN_SHOWIMAGES_PRESSED.bind())
 	
 	%TAG.text = "Made by AaaaaaICO
 	Github -> https://github.com/AaaaaaICO
@@ -725,3 +727,8 @@ func BTN_DECLINE_UPDATE_PRESSED():
 	CONFIRMED_DOWNLOAD_INSTRUCTIONS.emit(false)
 	%CC_UPDATE_AVAILABLE.hide()
 	%__INPUTBLOCKER__.hide()
+
+
+func BTN_SHOWIMAGES_PRESSED():
+	Global.SHOW_IMAGES = !Global.SHOW_IMAGES
+	print(Global.SHOW_IMAGES)

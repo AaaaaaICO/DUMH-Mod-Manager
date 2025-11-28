@@ -319,3 +319,45 @@ func MULTI_SELECTED_CHANGED() -> void:
 		await %AP_MULTI.animation_finished
 		%PNL_SIDE_COLOR_APPLIED_MULTI.visible = false
 		Global.MUTLI_SELECTED_MODS.erase(SETTINGS["ORIGINAL_NAME"])
+
+
+func BTN_CHANGE_IMG_PRESSED() -> void:
+	%AD_NewIMG.show()
+	%Window.hide()
+
+
+func BTN_NEW_IMG_CONFIRMED_PRESSED() -> void:
+	var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + SETTINGS["ORIGINAL_NAME"] + "/" + "DATA.json", FileAccess.READ);
+	var JSON_STRING = FILE_DATA.get_as_text()
+	var FILE_AS_DICT = JSON.parse_string(JSON_STRING)
+	FILE_AS_DICT["JPEG_LOC"] = %TE_NewIMG.text
+	var Data_FILE = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + SETTINGS["ORIGINAL_NAME"] + "/" + "DATA.json",  FileAccess.WRITE)
+	JSON_STRING = JSON.stringify(FILE_AS_DICT)
+	Data_FILE.store_line(JSON_STRING)
+	Global.POPULATE = true
+	Global.SETTINGS_WINDOW_OPEN = false
+	
+
+func BTN_SHOW_IMG_PRESSED() -> void:
+	%AD_Image.show()
+	%Window.hide()
+	var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + SETTINGS["ORIGINAL_NAME"] + "/" + "DATA.json", FileAccess.READ);
+	var JSON_STRING = FILE_DATA.get_as_text()
+	var FILE_AS_DICT = JSON.parse_string(JSON_STRING)
+	if(FILE_AS_DICT.has("JPEG_LOC")):
+		%HTTPRequest.request(FILE_AS_DICT["JPEG_LOC"])
+
+	
+
+
+func HTTPS_REQUEST_COMPLETE(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	if(result != HTTPRequest.RESULT_SUCCESS or response_code != 200):
+		print("Failed to download image")
+	else:
+		var image: Image = Image.new()
+		var error: Error = image.load_jpg_from_buffer(body)
+		%TextureRect.texture = ImageTexture.create_from_image(image)
+
+
+func SHOW_IMAGE_CONFIRMED_PRESSED() -> void:
+	Global.SETTINGS_WINDOW_OPEN = false

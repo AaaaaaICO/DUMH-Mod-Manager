@@ -1,6 +1,6 @@
 [gd_scene load_steps=36 format=3 uid="uid://cxi65hngr51x7"]
 
-[ext_resource type="Script" path="res://Scripts/Mod Panel/Mods_Item_Prefab_Controller.gd" id="1_l2keg"]
+[ext_resource type="Script" uid="uid://bkx615vq88jem" path="res://Scripts/Mod Panel/Mods_Item_Prefab_Controller.gd" id="1_l2keg"]
 [ext_resource type="Texture2D" uid="uid://chk70i5sjbbh1" path="res://Sprites/image.png" id="2_iibw8"]
 [ext_resource type="StyleBox" uid="uid://b0ha7ovj1t4wq" path="res://Styleboxs/Button/SimpleBlack_Button_Pressed.tres" id="2_vb4ok"]
 [ext_resource type="StyleBox" uid="uid://d3jw442hvmgiy" path="res://Styleboxs/Button/SimpleBlack_Button_Hover.tres" id="3_pav2c"]
@@ -78,9 +78,9 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_otcf0"]
 _data = {
-"IN": SubResource("Animation_c28og"),
-"OUT": SubResource("Animation_kcqks"),
-"RESET": SubResource("Animation_d8etj")
+&"IN": SubResource("Animation_c28og"),
+&"OUT": SubResource("Animation_kcqks"),
+&"RESET": SubResource("Animation_d8etj")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0rr5u"]
@@ -140,9 +140,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5sdkk"]
 _data = {
-"IN": SubResource("Animation_nqi23"),
-"OUT": SubResource("Animation_ejpql"),
-"RESET": SubResource("Animation_o1pm1")
+&"IN": SubResource("Animation_nqi23"),
+&"OUT": SubResource("Animation_ejpql"),
+&"RESET": SubResource("Animation_o1pm1")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c540o"]
@@ -202,9 +202,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vqnxc"]
 _data = {
-"IN": SubResource("Animation_660rh"),
-"OUT": SubResource("Animation_ib1ii"),
-"RESET": SubResource("Animation_xquc5")
+&"IN": SubResource("Animation_660rh"),
+&"OUT": SubResource("Animation_ib1ii"),
+&"RESET": SubResource("Animation_xquc5")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yr38v"]
@@ -485,9 +485,9 @@ tracks/13/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_68g2v"]
 _data = {
-"LOWER_CLOSE": SubResource("Animation_vrkv1"),
-"LOWER_OPEN": SubResource("Animation_j3jbe"),
-"RESET": SubResource("Animation_40du6")
+&"LOWER_CLOSE": SubResource("Animation_vrkv1"),
+&"LOWER_OPEN": SubResource("Animation_j3jbe"),
+&"RESET": SubResource("Animation_40du6")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohp5c"]
@@ -602,7 +602,7 @@ texture = ExtResource("2_iibw8")
 [node name="AP_OFF" type="AnimationPlayer" parent="MASK"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_otcf0")
+&"": SubResource("AnimationLibrary_otcf0")
 }
 
 [node name="PNL_SIDE_COLOR_APPLIED_OFF" type="Panel" parent="MASK"]
@@ -621,7 +621,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0rr5u")
 
 [node name="AP_NULL" type="AnimationPlayer" parent="MASK"]
 libraries = {
-"": SubResource("AnimationLibrary_5sdkk")
+&"": SubResource("AnimationLibrary_5sdkk")
 }
 
 [node name="PNL_SIDE_COLOR_APPLIED" type="Panel" parent="MASK"]
@@ -641,7 +641,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_c540o")
 [node name="AP_ON" type="AnimationPlayer" parent="MASK"]
 root_node = NodePath("../../UNPinned_Icon")
 libraries = {
-"": SubResource("AnimationLibrary_vqnxc")
+&"": SubResource("AnimationLibrary_vqnxc")
 }
 
 [node name="PNL_SIDE_COLOR_APPLIED_ON" type="Panel" parent="MASK"]
@@ -657,7 +657,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yr38v")
 unique_name_in_owner = true
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_otcf0")
+&"": SubResource("AnimationLibrary_otcf0")
 }
 
 [node name="PNL_SIDE_COLOR_APPLIED_MULTI" type="Panel" parent="MASK"]
@@ -677,12 +677,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5baou")
 
 [node name="ANIM" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_68g2v")
+&"": SubResource("AnimationLibrary_68g2v")
 }
 
 [node name="Window" type="Window" parent="."]
+unique_name_in_owner = true
+oversampling_override = 1.0
 initial_position = 1
-size = Vector2i(165, 275)
+size = Vector2i(165, 345)
 visible = false
 always_on_top = true
 theme_override_colors/title_color = Color(0, 0, 0, 1)
@@ -716,99 +718,131 @@ theme_override_constants/separation = 15
 
 [node name="BTN_ChangeName" type="Button" parent="Window/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
-theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
-theme_override_styles/hover = ExtResource("3_pav2c")
-theme_override_styles/pressed = ExtResource("2_vb4ok")
 theme_override_styles/normal = ExtResource("4_2q766")
+theme_override_styles/pressed = ExtResource("2_vb4ok")
+theme_override_styles/hover = ExtResource("3_pav2c")
+theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
 text = "Change Name"
 
 [node name="BTN_ChangeTags" type="Button" parent="Window/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
-theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
-theme_override_styles/hover = ExtResource("3_pav2c")
-theme_override_styles/pressed = ExtResource("2_vb4ok")
 theme_override_styles/normal = ExtResource("4_2q766")
+theme_override_styles/pressed = ExtResource("2_vb4ok")
+theme_override_styles/hover = ExtResource("3_pav2c")
+theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
 text = "Change Tags"
 
 [node name="BTN_ChangeChar" type="Button" parent="Window/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
-theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
-theme_override_styles/hover = ExtResource("3_pav2c")
-theme_override_styles/pressed = ExtResource("2_vb4ok")
 theme_override_styles/normal = ExtResource("4_2q766")
+theme_override_styles/pressed = ExtResource("2_vb4ok")
+theme_override_styles/hover = ExtResource("3_pav2c")
+theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
 text = "Change Character"
 
 [node name="BTN_ChangePin" type="Button" parent="Window/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
-theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
-theme_override_styles/hover = ExtResource("3_pav2c")
-theme_override_styles/pressed = ExtResource("2_vb4ok")
 theme_override_styles/normal = ExtResource("4_2q766")
+theme_override_styles/pressed = ExtResource("2_vb4ok")
+theme_override_styles/hover = ExtResource("3_pav2c")
+theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
 text = "Pin/Unpin"
 
 [node name="BTN_ChangeIndex-1" type="Button" parent="Window/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
-theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
-theme_override_styles/hover = ExtResource("3_pav2c")
-theme_override_styles/pressed = ExtResource("2_vb4ok")
 theme_override_styles/normal = ExtResource("4_2q766")
+theme_override_styles/pressed = ExtResource("2_vb4ok")
+theme_override_styles/hover = ExtResource("3_pav2c")
+theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
 text = "Index - 1"
 
 [node name="BTN_ChangeIndex+" type="Button" parent="Window/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
-theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
-theme_override_styles/hover = ExtResource("3_pav2c")
-theme_override_styles/pressed = ExtResource("2_vb4ok")
 theme_override_styles/normal = ExtResource("4_2q766")
+theme_override_styles/pressed = ExtResource("2_vb4ok")
+theme_override_styles/hover = ExtResource("3_pav2c")
+theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
 text = "Index + 1"
+
+[node name="BTN_ShowImage" type="Button" parent="Window/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = ExtResource("4_2q766")
+theme_override_styles/pressed = ExtResource("2_vb4ok")
+theme_override_styles/hover = ExtResource("3_pav2c")
+theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
+text = "Show Image"
+
+[node name="BTN_ChangeImage" type="Button" parent="Window/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = ExtResource("4_2q766")
+theme_override_styles/pressed = ExtResource("2_vb4ok")
+theme_override_styles/hover = ExtResource("3_pav2c")
+theme_override_styles/hover_pressed = ExtResource("2_vb4ok")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8gj3b")
+text = "Change Image"
 
 [node name="LBL_CurrentIndex" type="Label" parent="Window/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -817,6 +851,7 @@ text = "Index = 0"
 horizontal_alignment = 1
 
 [node name="AD_NewName" type="AcceptDialog" parent="."]
+oversampling_override = 1.0
 title = ""
 initial_position = 1
 size = Vector2i(414, 131)
@@ -874,6 +909,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="AD_ChangeTags" type="AcceptDialog" parent="."]
+oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(414, 414)
 borderless = true
@@ -901,6 +937,72 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
+[node name="AD_Image" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(414, 414)
+borderless = true
+always_on_top = true
+theme_override_styles/panel = ExtResource("5_t32np")
+
+[node name="MarginContainer" type="MarginContainer" parent="AD_Image"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 409.0
+offset_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AD_Image/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="AD_Image/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 4
+
+[node name="AD_NewIMG" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = ""
+initial_position = 1
+size = Vector2i(414, 131)
+unresizable = true
+borderless = true
+theme_override_styles/panel = ExtResource("5_t32np")
+ok_button_text = "Confirm"
+dialog_close_on_escape = false
+
+[node name="MarginContainer" type="MarginContainer" parent="AD_NewIMG"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 409.0
+offset_bottom = 85.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TE_NewIMG" type="TextEdit" parent="AD_NewIMG/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kwgc8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uemvk")
+placeholder_text = "New JPEG location (website location not file)"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
 [connection signal="mouse_entered" from="." to="." method="LOWER_MOUSE_HOVER"]
 [connection signal="mouse_exited" from="." to="." method="LOWER_MOUSE_UNHOVER"]
 [connection signal="visibility_changed" from="MASK/PNL_SIDE_COLOR_APPLIED_OFF" to="." method="APPLIED_OFF_VISIBILITY_CHANGED"]
@@ -914,6 +1016,11 @@ theme_override_constants/separation = 15
 [connection signal="pressed" from="Window/Panel/MarginContainer/VBoxContainer/BTN_ChangePin" to="." method="BTN_CHANGE_PIN_PRESSED"]
 [connection signal="pressed" from="Window/Panel/MarginContainer/VBoxContainer/BTN_ChangeIndex-1" to="." method="BTN_CHANGE_INDEX_SUBTRACT_PRESSED"]
 [connection signal="pressed" from="Window/Panel/MarginContainer/VBoxContainer/BTN_ChangeIndex+" to="." method="BTN_CHANGE_INDEX_ADD_PRESSED"]
+[connection signal="pressed" from="Window/Panel/MarginContainer/VBoxContainer/BTN_ShowImage" to="." method="BTN_SHOW_IMG_PRESSED"]
+[connection signal="pressed" from="Window/Panel/MarginContainer/VBoxContainer/BTN_ChangeImage" to="." method="BTN_CHANGE_IMG_PRESSED"]
 [connection signal="confirmed" from="AD_NewName" to="." method="BTN_CHANGE_NAME_CONFIRMED_PRESSED"]
 [connection signal="confirmed" from="AD_ChangeChara" to="." method="BTN_CHANGE_CHARA_CONFIRMED_PRESSED"]
 [connection signal="confirmed" from="AD_ChangeTags" to="." method="BTN_CHANGE_TAGS_CONFIRMED_PRESSED"]
+[connection signal="confirmed" from="AD_Image" to="." method="SHOW_IMAGE_CONFIRMED_PRESSED"]
+[connection signal="confirmed" from="AD_NewIMG" to="." method="BTN_NEW_IMG_CONFIRMED_PRESSED"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="HTTPS_REQUEST_COMPLETE"]

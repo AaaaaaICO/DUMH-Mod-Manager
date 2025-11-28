@@ -1,6 +1,6 @@
 extends Node
 
-var CURRENT_VER = "v1.1.7.1-beta"
+var CURRENT_VER = "v1.1.7.2-beta"
 var USER_SYSTEM = OS.get_name()
 
 var SAVE_DATA = {
@@ -34,6 +34,8 @@ var CAN_REFRESH = false
 var MULTI_SELECT_ACTIVE = false
 
 var MUTLI_SELECTED_MODS = []
+
+var SHOW_IMAGES = false
 
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("REFRESH") and CAN_REFRESH):

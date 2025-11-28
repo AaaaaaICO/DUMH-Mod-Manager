@@ -1,8 +1,8 @@
 [gd_scene load_steps=45 format=3 uid="uid://cio88eumv6006"]
 
-[ext_resource type="Script" path="res://Scenes/Main_Window/Main_Window_Controller.gd" id="1_w4vn0"]
+[ext_resource type="Script" uid="uid://dgctuppceoiix" path="res://Scenes/Main_Window/Main_Window_Controller.gd" id="1_w4vn0"]
 [ext_resource type="StyleBox" uid="uid://budh1h4oai42v" path="res://Styleboxs/Button/SimpleWhite_Button.tres" id="2_2qig7"]
-[ext_resource type="Script" path="res://Scripts/Global/Scale_On_Hover.gd" id="3_s38qy"]
+[ext_resource type="Script" uid="uid://cqiy3xit24i7p" path="res://Scripts/Global/Scale_On_Hover.gd" id="3_s38qy"]
 [ext_resource type="StyleBox" uid="uid://cqbj7m0rmflqx" path="res://Styleboxs/Button/SimpleWhite_Button_Pressed.tres" id="3_xmw14"]
 [ext_resource type="Texture2D" uid="uid://cxd82oxn5uolw" path="res://Sprites/Warning.png" id="5_gbhlx"]
 [ext_resource type="StyleBox" uid="uid://bm1cn6c3xs130" path="res://Styleboxs/Button/SimpleBlack_Button.tres" id="6_due6c"]
@@ -10,7 +10,7 @@
 [ext_resource type="StyleBox" uid="uid://b0ha7ovj1t4wq" path="res://Styleboxs/Button/SimpleBlack_Button_Pressed.tres" id="8_kyks4"]
 [ext_resource type="StyleBox" uid="uid://fik51dlbgc7j" path="res://Styleboxs/Black_Red_Panel.tres" id="9_svco5"]
 [ext_resource type="StyleBox" uid="uid://du8causkg2mk2" path="res://Styleboxs/Button/SimpleWhite_Button_Hover.tres" id="10_d6rdd"]
-[ext_resource type="Script" path="res://Scripts/CONFIRM_DIALOG_CUSTOM.gd" id="11_iptwb"]
+[ext_resource type="Script" uid="uid://dlftcrivhg6d1" path="res://Scripts/CONFIRM_DIALOG_CUSTOM.gd" id="11_iptwb"]
 
 [sub_resource type="Animation" id="Animation_7pu7j"]
 resource_name = "ANIM_IN"
@@ -62,9 +62,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8hej4"]
 _data = {
-"ANIM_IN": SubResource("Animation_7pu7j"),
-"ANIM_OUT": SubResource("Animation_movf7"),
-"RESET": SubResource("Animation_4bkwn")
+&"ANIM_IN": SubResource("Animation_7pu7j"),
+&"ANIM_OUT": SubResource("Animation_movf7"),
+&"RESET": SubResource("Animation_4bkwn")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfegm"]
@@ -74,8 +74,6 @@ corner_radius_bottom_left = 15
 corner_detail = 20
 shadow_color = Color(0, 0, 0, 0.52549)
 shadow_size = 20
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x2tdy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bcr5"]
 bg_color = Color(1, 1, 1, 1)
@@ -87,6 +85,8 @@ corner_detail = 20
 shadow_color = Color(0, 0, 0, 0.25)
 shadow_size = 4
 shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x2tdy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlxpr"]
 bg_color = Color(0.0470588, 0.0470588, 0.0666667, 1)
@@ -155,9 +155,9 @@ shadow_offset = Vector2(0, 2.515)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpf3b"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihlha"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dyy6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihlha"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vlas"]
 bg_color = Color(0.361, 1, 0.361, 0.75)
@@ -224,8 +224,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8squj"]
 _data = {
-"RESET": SubResource("Animation_tjh5n"),
-"WARNING_IN": SubResource("Animation_24gb8")
+&"RESET": SubResource("Animation_tjh5n"),
+&"WARNING_IN": SubResource("Animation_24gb8")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke5un"]
@@ -235,15 +235,15 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_56rfc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8c0kc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_npqde"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ctb3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_034l4"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ctb3"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_npqde"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8c0kc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_56rfc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfh3j"]
 bg_color = Color(0.0862745, 0.0862745, 0.113725, 1)
@@ -281,7 +281,7 @@ use_threads = true
 [node name="ANIM_TRANS" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_8hej4")
+&"": SubResource("AnimationLibrary_8hej4")
 }
 
 [node name="ColorRect" type="ColorRect" parent="ANIM_TRANS"]
@@ -354,18 +354,18 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(155, 57)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 text = "APPLY"
 
 [node name="BTN_FILTER_MODS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
@@ -373,18 +373,18 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(155, 57)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 text = "FILTER"
 
 [node name="BTN_TAGS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
@@ -392,18 +392,18 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(115, 57)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 text = "TAGS"
 
 [node name="BTN_CHARACTERS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
@@ -411,18 +411,18 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(115, 57)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 text = "CHARA"
 
 [node name="BTN_SAVE_SLOTS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
@@ -430,18 +430,18 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(115, 57)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 text = "Save Slots"
 
 [node name="BTN_SETTINGS" type="Button" parent="VBC MAIN/PC_Header/MarginContainer/HBoxContainer"]
@@ -449,18 +449,18 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(155, 57)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 text = "SETTINGS"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBC MAIN"]
@@ -602,22 +602,22 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7lowi")
 
 [node name="BTN_Import" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
 offset_top = 5.0
 offset_right = 505.0
 offset_bottom = 40.0
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
-theme_override_styles/hover_pressed = ExtResource("3_xmw14")
-theme_override_styles/hover = ExtResource("10_d6rdd")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("10_d6rdd")
+theme_override_styles/hover_pressed = ExtResource("3_xmw14")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
 text = "Import Foldered mods"
 
 [node name="TE_IMPORT" type="TextEdit" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Panel"]
@@ -638,54 +638,71 @@ placeholder_text = "Path to import from"
 [node name="BTN_DUMP" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
-theme_override_styles/hover_pressed = ExtResource("3_xmw14")
-theme_override_styles/hover = ExtResource("10_d6rdd")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("10_d6rdd")
+theme_override_styles/hover_pressed = ExtResource("3_xmw14")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
 text = "Move mods into ~MODS
 (deletes from external mods folders)"
 
 [node name="BTN_DUMP_UNDEST" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
-theme_override_styles/hover_pressed = ExtResource("3_xmw14")
-theme_override_styles/hover = ExtResource("10_d6rdd")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("10_d6rdd")
+theme_override_styles/hover_pressed = ExtResource("3_xmw14")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
 text = "Copy mods into ~MODS"
 
 [node name="BTN_HARDRESET" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
-theme_override_styles/hover_pressed = ExtResource("3_xmw14")
-theme_override_styles/hover = ExtResource("10_d6rdd")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("10_d6rdd")
+theme_override_styles/hover_pressed = ExtResource("3_xmw14")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
 text = "Reset save data (path locations)"
+
+[node name="BTN_SHOWIMAGES" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("10_d6rdd")
+theme_override_styles/hover_pressed = ExtResource("3_xmw14")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xcok4")
+text = "Show Images"
 
 [node name="TAG" type="Label" parent="SETTINGS/MarginContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -695,18 +712,18 @@ theme_override_font_sizes/font_size = 20
 [node name="BTN_RETURN" type="Button" parent="SETTINGS/MarginContainer/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bpf3b")
-theme_override_styles/hover_pressed = ExtResource("8_kyks4")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/hover_pressed = ExtResource("8_kyks4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bpf3b")
 text = "RETURN"
 
 [node name="Label" type="Label" parent="SETTINGS"]
@@ -766,7 +783,7 @@ theme_override_constants/separation = 15
 [node name="MC_Get_USER_MODS_Path" type="MarginContainer" parent="__INPUTBLOCKER__"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
+layout_mode = 0
 anchor_top = -0.0344262
 anchor_bottom = 0.047541
 offset_left = -14.0
@@ -817,19 +834,19 @@ grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(404, 40)
 size_flags_vertical = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ihlha")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_1dyy6")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1dyy6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ihlha")
 text = "OPEN FILE MANAGER"
 script = ExtResource("3_s38qy")
 UnHoverSize = Vector2(0.9, 0.9)
@@ -916,19 +933,19 @@ grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(404, 40)
 size_flags_vertical = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ihlha")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_1dyy6")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = ExtResource("2_2qig7")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1dyy6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ihlha")
 text = "OPEN FILE MANAGER"
 script = ExtResource("3_s38qy")
 UnHoverSize = Vector2(0.9, 0.9)
@@ -962,7 +979,7 @@ Steam: Right click > Properties... > Installed Files > Browse\""
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
-layout_mode = 2
+layout_mode = 0
 offset_left = 440.0
 offset_top = 305.0
 offset_right = 440.0
@@ -974,7 +991,7 @@ scale = Vector2(0.2, 0.2)
 [node name="WARNING_AnimationPlayer" type="AnimationPlayer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_8squj")
+&"": SubResource("AnimationLibrary_8squj")
 }
 
 [node name="S2D_WARNING" type="Sprite2D" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS"]
@@ -1000,7 +1017,7 @@ autowrap_mode = 2
 clip_text = true
 
 [node name="MarginContainer" type="MarginContainer" parent="__INPUTBLOCKER__/CC_CUSTOM_WARNING_MODS_IN_MODS/NULL"]
-layout_mode = 2
+layout_mode = 0
 offset_left = -214.0
 offset_top = 37.0
 offset_right = 210.0
@@ -1022,9 +1039,9 @@ text = "IMPORT"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/hover = ExtResource("7_lda8e")
-theme_override_styles/pressed = ExtResource("8_kyks4")
 theme_override_styles/normal = ExtResource("6_due6c")
+theme_override_styles/pressed = ExtResource("8_kyks4")
+theme_override_styles/hover = ExtResource("7_lda8e")
 text = "IGNORE"
 
 [node name="CC_UPDATE_AVAILABLE" type="MarginContainer" parent="__INPUTBLOCKER__"]
@@ -1082,18 +1099,18 @@ custom_minimum_size = Vector2(155, 57)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 text = "Update Now!"
 
 [node name="BTN_DELINE_UPDATE" type="Button" parent="__INPUTBLOCKER__/CC_UPDATE_AVAILABLE/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -1101,18 +1118,18 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(155, 57)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
-theme_override_styles/hover = ExtResource("2_2qig7")
-theme_override_styles/pressed = ExtResource("3_xmw14")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bcr5")
+theme_override_styles/pressed = ExtResource("3_xmw14")
+theme_override_styles/hover = ExtResource("2_2qig7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2tdy")
 text = "Decline"
 
 [node name="CC_WARNING" type="CenterContainer" parent="__INPUTBLOCKER__"]
@@ -1137,16 +1154,16 @@ layout_mode = 2
 
 [node name="BTN_WARNING" type="Button" parent="__INPUTBLOCKER__/CC_WARNING/NULL"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
 offset_left = -215.0
 offset_top = -113.0
 offset_right = 210.0
 offset_bottom = 113.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_56rfc")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_8c0kc")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_npqde")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_034l4")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3ctb3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_034l4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_npqde")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8c0kc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_56rfc")
 
 [node name="LBL_WARNING_TEXT" type="Label" parent="__INPUTBLOCKER__/CC_WARNING/NULL"]
 unique_name_in_owner = true
@@ -1313,10 +1330,10 @@ theme_override_constants/separation = 15
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0o6fc")
-theme_override_styles/hover = ExtResource("7_lda8e")
-theme_override_styles/pressed = ExtResource("8_kyks4")
 theme_override_styles/normal = ExtResource("6_due6c")
+theme_override_styles/pressed = ExtResource("8_kyks4")
+theme_override_styles/hover = ExtResource("7_lda8e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0o6fc")
 text = "RESET FILTERS"
 
 [node name="AD_PROFILE_NAME" type="AcceptDialog" parent="__INPUTBLOCKER__"]
@@ -1415,19 +1432,19 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0el1n")
-theme_override_styles/hover = ExtResource("7_lda8e")
-theme_override_styles/pressed = ExtResource("8_kyks4")
 theme_override_styles/normal = ExtResource("6_due6c")
+theme_override_styles/pressed = ExtResource("8_kyks4")
+theme_override_styles/hover = ExtResource("7_lda8e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0el1n")
 text = "Confirm"
 
 [node name="CDC_BTN_CANCEL" type="Button" parent="__INPUTBLOCKER__/CONFIRM_DIALOG_CUSTOM/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = ExtResource("7_lda8e")
-theme_override_styles/pressed = ExtResource("8_kyks4")
 theme_override_styles/normal = ExtResource("6_due6c")
+theme_override_styles/pressed = ExtResource("8_kyks4")
+theme_override_styles/hover = ExtResource("7_lda8e")
 text = "Cancel"
 
 [connection signal="mouse_entered" from="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" to="__INPUTBLOCKER__/MC_Get_USER_MODS_Path/VBC/NULL/BTN_OPEN_FILE_MANAGER" method="_on_mouse_entered"]
