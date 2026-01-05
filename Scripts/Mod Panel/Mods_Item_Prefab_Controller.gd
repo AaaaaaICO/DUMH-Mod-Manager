@@ -361,3 +361,7 @@ func HTTPS_REQUEST_COMPLETE(result: int, response_code: int, headers: PackedStri
 
 func SHOW_IMAGE_CONFIRMED_PRESSED() -> void:
 	Global.SETTINGS_WINDOW_OPEN = false
+
+
+func SHOW_IMG_CLOSE_REQ() -> void:
+	Global.SETTINGS_WINDOW_OPEN = false

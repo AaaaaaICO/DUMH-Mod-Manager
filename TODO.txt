@@ -1,0 +1,7 @@
+﻿TODO Organize mods by character names
+
+TODO Organize mods filter page by alphabetical
+
+TODO Remake all of DUMH again
+
+TODO ask to apply when clicking on filters (only when you have ones selected)
