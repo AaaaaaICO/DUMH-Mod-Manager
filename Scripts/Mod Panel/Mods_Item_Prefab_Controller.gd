@@ -345,6 +345,7 @@ func BTN_SHOW_IMG_PRESSED() -> void:
 	var JSON_STRING = FILE_DATA.get_as_text()
 	var FILE_AS_DICT = JSON.parse_string(JSON_STRING)
 	if(FILE_AS_DICT.has("JPEG_LOC")):
+		print(FILE_AS_DICT["JPEG_LOC"])
 		%HTTPRequest.request(FILE_AS_DICT["JPEG_LOC"])
 
 	
@@ -353,6 +354,7 @@ func BTN_SHOW_IMG_PRESSED() -> void:
 func HTTPS_REQUEST_COMPLETE(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	print(result)
 	print(response_code)
+	print(headers)
 	if(result != HTTPRequest.RESULT_SUCCESS or response_code != 200):
 		print("Failed to download image")
 	else:
