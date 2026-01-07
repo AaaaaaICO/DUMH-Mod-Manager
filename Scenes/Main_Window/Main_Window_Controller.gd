@@ -315,6 +315,7 @@ func CHECK_SAVED_USER_MODS_PATH_QUALITY():
 					print("Renameing File : " + Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" +FILE)
 					DirAccess.rename_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" +FILE, NEW_PATH + "/" +FILE)
 					print("Renamed File to: " + NEW_PATH + "/" +FILE)
+					#TODO edit original name
 					
 					print("Renameing File : " + Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" +FILE.left(FILE.length() - 4) + ".sig")
 					DirAccess.rename_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" +FILE.left(FILE.length() - 4) + ".sig", NEW_PATH + "/" +FILE.left(FILE.length() - 4) + ".sig")
@@ -357,8 +358,16 @@ func CHECK_SAVED_USER_MODS_PATH_QUALITY():
 				if(FILE.left(FILE.length() - 4) != FOLDER):
 					print("Renaming folder " + FOLDER + " to " + FILE)
 					DirAccess.rename_absolute(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FOLDER, Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE.left(FILE.length() - 4))
+					print(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE + "/DATA.json")
+					var FILE_DATA = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE.left(FILE.length() - 4) + "/DATA.json",  FileAccess.READ);
+					var JSON_STRING = FILE_DATA.get_as_text()
+					var FILE_AS_DICT = JSON.parse_string(JSON_STRING)
+					FILE_AS_DICT["ORIGINAL_NAME"] = FILE.left(FILE.length() - 4)
 					
-
+					var Data_FILE = FileAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"] + "/" + FILE.left(FILE.length() - 4) + "/DATA.json",  FileAccess.WRITE)
+					JSON_STRING = JSON.stringify(FILE_AS_DICT)
+					Data_FILE.store_line(JSON_STRING)
+					print("Updated DATA.json:")
 func POPULATE_MODS(TAGS, CHARACTERS):
 	Global.POPULATE = false
 	var DA = DirAccess.open(Global.SAVE_DATA["USER_MODS_FOLDER_PATH"])

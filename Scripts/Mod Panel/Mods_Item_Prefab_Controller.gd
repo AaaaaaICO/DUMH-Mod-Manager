@@ -351,6 +351,8 @@ func BTN_SHOW_IMG_PRESSED() -> void:
 
 
 func HTTPS_REQUEST_COMPLETE(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	print(result)
+	print(response_code)
 	if(result != HTTPRequest.RESULT_SUCCESS or response_code != 200):
 		print("Failed to download image")
 	else:

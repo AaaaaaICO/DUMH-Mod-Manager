@@ -999,7 +999,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kwgc8")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uemvk")
-placeholder_text = "New JPEG location (website location not file)"
+placeholder_text = "JPEG or PNG location (website location not file)"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
